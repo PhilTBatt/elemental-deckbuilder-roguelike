@@ -3,4 +3,7 @@
     <Project Path="src/Roguelike.Rules/Roguelike.Rules.csproj" />
     <Project Path="src/Roguelike.Terminal/Roguelike.Terminal.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Roguelike.Rules.Tests/Roguelike.Rules.Tests.csproj" />
+  </Folder>
 </Solution>
