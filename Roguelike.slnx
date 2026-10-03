@@ -1,2 +1,6 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Roguelike.Rules/Roguelike.Rules.csproj" />
+    <Project Path="src/Roguelike.Terminal/Roguelike.Terminal.csproj" />
+  </Folder>
 </Solution>
