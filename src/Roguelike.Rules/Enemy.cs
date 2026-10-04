@@ -1,6 +1,9 @@
 ﻿namespace Roguelike.Rules;
 
 public class Enemy : Character {
-    public Enemy(int health) : base(health) {
+    public int Damage { get; private set; }
+
+    public Enemy(int health, int damage) : base(health) {
+        Damage = damage;
     }
 }

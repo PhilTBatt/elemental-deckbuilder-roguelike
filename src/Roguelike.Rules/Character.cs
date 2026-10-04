@@ -3,6 +3,8 @@
 public class Character {
     public int Health { get; private set; }
 
+    public bool IsAlive => Health > 0;
+
     public Character(int health) {
         Health = health;
     }
