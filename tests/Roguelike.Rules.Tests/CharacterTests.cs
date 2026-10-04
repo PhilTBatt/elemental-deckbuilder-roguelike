@@ -33,4 +33,46 @@ public class CharacterTests
         Assert.False(player.IsAlive);
         Assert.False(enemy.IsAlive);
     }
+
+    [Fact]
+    public void Block_Absorbs_Smaller_Hit() {
+        var player = new Player(40);
+        player.AddBlock(5);
+
+        player.TakeDamage(3);
+
+        Assert.Equal(40, player.Health);
+        Assert.Equal(2, player.Block);
+    }
+
+    [Fact]
+    public void Bigger_Hit_Spills_Past_Block() {
+        var player = new Player(40);
+        player.AddBlock(5);
+
+        player.TakeDamage(8);
+
+        Assert.Equal(37, player.Health);
+        Assert.Equal(0, player.Block);
+    }
+
+    [Fact]
+    public void Block_Stacks() {
+        var player = new Player(40);
+
+        player.AddBlock(3);
+        player.AddBlock(3);
+
+        Assert.Equal(6, player.Block);
+    }
+
+    [Fact]
+    public void Start_Of_Turn_Clears_Block() {
+        var player = new Player(40);
+        player.AddBlock(5);
+
+        player.StartTurn();
+
+        Assert.Equal(0, player.Block);
+}
 }
