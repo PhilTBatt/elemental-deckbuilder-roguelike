@@ -3,7 +3,7 @@ namespace Roguelike.Rules.Tests;
 public class EffectTests {
     [Fact]
     public void Damage_Effect_Hurts_The_Target() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         new DamageEffect(3).Apply(battle, battle.Player, battle.Enemy);
 
@@ -13,7 +13,7 @@ public class EffectTests {
 
     [Fact]
     public void Block_Effect_Gives_Block_To_The_Caster() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         new BlockEffect(3).Apply(battle, battle.Player, battle.Enemy);
 
@@ -23,7 +23,7 @@ public class EffectTests {
 
     [Fact]
     public void Enemy_Can_Be_The_Caster() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         new DamageEffect(4).Apply(battle, battle.Enemy, battle.Player);
 

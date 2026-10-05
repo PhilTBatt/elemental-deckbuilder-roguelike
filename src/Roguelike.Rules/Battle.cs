@@ -25,6 +25,8 @@ public class Battle {
 
     public List<Card> DiscardPile { get; private set; } = [];
 
+    public int TurnNumber = 0;
+
     public Battle(Player player, Enemy enemy) {
         Player = player;
         Enemy = enemy;
@@ -34,8 +36,10 @@ public class Battle {
 
     public void StartTurn() {
         State = BattleState.PlayerTurn;
+        TurnNumber++;
         PlayerEnergy = 3;
         for (int i = 0; i < 5; i++) PlayerDraw();
+
         Player.StartTurn();
     }
 
@@ -48,7 +52,7 @@ public class Battle {
 
         State = BattleState.EnemyTurn;
         Enemy.StartTurn();
-        Enemy.TakeAction(Player);
+        Enemy.TakeAction(this, Player);
 
         ResolveResult();
         if (IsOver) return;
@@ -69,6 +73,7 @@ public class Battle {
         if (IsOver) return;
 
         StartTurn();
+        PlayPlayerTurn();
 
         ResolveResult();
         if (IsOver) return;
@@ -111,7 +116,20 @@ public class Battle {
     }
 
     public bool PlayCard(Card card) {
+        if (card.Cost > PlayerEnergy) return false;
+        if (!PlayerHand.Remove(card)) return false;
+        PlayerEnergy -= card.Cost;
+
         foreach (var effect in card.Effects) effect.Apply(this, Player, Enemy);
+        DiscardPile.Add(card);
         return true;
+    }
+
+    public void PlayPlayerTurn() {
+        foreach (var card in PlayerHand.ToList()) {
+            PlayCard(card);
+            ResolveResult();
+            if (IsOver) return;
+        }
     }
 }

@@ -3,7 +3,7 @@ namespace Roguelike.Rules.Tests;
 public class BattleTests {
     [Fact]
     public void Battle_Starts_With_Player_And_Enemy() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         Assert.NotNull(battle.Player);
         Assert.NotNull(battle.Enemy);
@@ -14,7 +14,7 @@ public class BattleTests {
 
     [Fact]
     public void Start_Of_Turn_Gives_Energy_And_Player_Turn() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
 
@@ -24,7 +24,7 @@ public class BattleTests {
 
     [Fact]
     public void End_Turn_Lets_Enemy_Hit_Player() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
         battle.EndTurn();
@@ -34,7 +34,7 @@ public class BattleTests {
 
     [Fact]
     public void Block_Reduces_Enemy_Hit() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
         battle.Player.AddBlock(3);
@@ -45,7 +45,7 @@ public class BattleTests {
 
     [Fact]
     public void Full_Battle_Ends_When_Player_Dies() {
-        var battle = new Battle(new Player(12), new Enemy(20, 4));
+        var battle = new Battle(new Player(12), new Enemy(20, [new DamageEffect(4)]));
 
         battle.StartBattle();
 
@@ -56,7 +56,7 @@ public class BattleTests {
 
     [Fact]
     public void Dead_Enemy_Does_Not_Attack() {
-        var battle = new Battle(new Player(40), new Enemy(15, 4));
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
         battle.Enemy.TakeDamage(15);
@@ -69,7 +69,7 @@ public class BattleTests {
 
     [Fact]
     public void Finished_Battle_Does_Nothing_More() {
-        var battle = new Battle(new Player(4), new Enemy(15, 4));
+        var battle = new Battle(new Player(4), new Enemy(15, [new DamageEffect(4)]));
         battle.StartTurn();
         battle.EndTurn();
 
@@ -99,7 +99,7 @@ public class BattleTests {
     public void New_Battle_Puts_The_Whole_Deck_In_The_Draw_Pile() {
         var player = PlayerWithDeck(10);
 
-        var battle = new Battle(player, new Enemy(15, 4));
+        var battle = new Battle(player, new Enemy(15, [new DamageEffect(4)]));
 
         Assert.Equal(10, battle.DrawPile.Count);
         Assert.All(player.Deck, card => Assert.Contains(card, battle.DrawPile));
@@ -109,7 +109,7 @@ public class BattleTests {
 
     [Fact]
     public void Start_Of_Turn_Draws_Five_Cards() {
-        var battle = new Battle(PlayerWithDeck(10), new Enemy(15, 4));
+        var battle = new Battle(PlayerWithDeck(10), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
 
@@ -121,7 +121,7 @@ public class BattleTests {
     [Fact]
     public void Drawing_Leaves_The_Deck_Alone() {
         var player = PlayerWithDeck(10);
-        var battle = new Battle(player, new Enemy(15, 4));
+        var battle = new Battle(player, new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
 
@@ -130,7 +130,7 @@ public class BattleTests {
 
     [Fact]
     public void End_Of_Turn_Discards_The_Hand() {
-        var battle = new Battle(PlayerWithDeck(10), new Enemy(15, 4));
+        var battle = new Battle(PlayerWithDeck(10), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
         battle.EndTurn();
@@ -142,7 +142,7 @@ public class BattleTests {
 
     [Fact]
     public void Empty_Draw_Pile_Is_Refilled_From_The_Discard_Pile() {
-        var battle = new Battle(PlayerWithDeck(10), new Enemy(15, 4));
+        var battle = new Battle(PlayerWithDeck(10), new Enemy(15, [new DamageEffect(4)]));
         battle.StartTurn();
         battle.EndTurn();
         battle.StartTurn();
@@ -159,7 +159,7 @@ public class BattleTests {
     [Fact]
     public void Cards_Are_Never_Lost_Or_Duplicated() {
         var player = PlayerWithDeck(10);
-        var battle = new Battle(player, new Enemy(15, 4));
+        var battle = new Battle(player, new Enemy(15, [new DamageEffect(4)]));
 
         for (int turn = 0; turn < 6; turn++) {
             battle.StartTurn();
@@ -172,12 +172,36 @@ public class BattleTests {
 
     [Fact]
     public void Deck_Smaller_Than_A_Hand_Draws_What_It_Has() {
-        var battle = new Battle(PlayerWithDeck(3), new Enemy(15, 4));
+        var battle = new Battle(PlayerWithDeck(3), new Enemy(15, [new DamageEffect(4)]));
 
         battle.StartTurn();
 
         Assert.Equal(3, battle.PlayerHand.Count);
         Assert.Empty(battle.DrawPile);
         Assert.Empty(battle.DiscardPile);
+    }
+
+    [Fact]
+    public void Turn_Number_Goes_Up_Each_Turn() {
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
+        Assert.Equal(0, battle.TurnNumber);
+
+        battle.StartTurn();
+        battle.EndTurn();
+        battle.StartTurn();
+
+        Assert.Equal(2, battle.TurnNumber);
+    }
+
+    [Fact]
+    public void Player_Block_Wears_Off_At_The_Start_Of_The_Next_Turn() {
+        var battle = new Battle(new Player(40), new Enemy(15, [new DamageEffect(4)]));
+        battle.StartTurn();
+        battle.Player.AddBlock(10);
+        battle.EndTurn();
+
+        battle.StartTurn();
+
+        Assert.Equal(0, battle.Player.Block);
     }
 }

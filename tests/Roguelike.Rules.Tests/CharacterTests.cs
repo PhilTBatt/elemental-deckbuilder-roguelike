@@ -6,7 +6,7 @@ public class CharacterTests
     public void Character_Takes_Damage()
     {
         var player = new Player(40);
-        var enemy = new Enemy(15, 4);
+        var enemy = new Enemy(15, [new DamageEffect(4)]);
 
         player.TakeDamage(10);
         enemy.TakeDamage(5);
@@ -19,7 +19,7 @@ public class CharacterTests
     public void Character_Survives_And_Dies()
     {
         var player = new Player(40);
-        var enemy = new Enemy(15, 4);
+        var enemy = new Enemy(15, [new DamageEffect(4)]);
 
         player.TakeDamage(10);
         enemy.TakeDamage(5);

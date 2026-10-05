@@ -7,6 +7,8 @@ public class Character {
 
     public bool IsAlive => Health > 0;
 
+    public Battle? Battle { get; set; }
+
     public Character(int health) {
         Health = health;
     }
