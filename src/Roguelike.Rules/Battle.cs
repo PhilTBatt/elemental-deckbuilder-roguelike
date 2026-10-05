@@ -109,4 +109,9 @@ public class Battle {
         DrawPile.RemoveAt(DrawPile.Count - 1);
         PlayerHand.Add(card);
     }
+
+    public bool PlayCard(Card card) {
+        foreach (var effect in card.Effects) effect.Apply(this, Player, Enemy);
+        return true;
+    }
 }

@@ -80,10 +80,10 @@ public class BattleTests {
         Assert.True(battle.IsOver);
     }
 
-        private static Player PlayerWithDeck(int size) {
+    private static Player PlayerWithDeck(int size) {
         var player = new Player(40);
         for (int i = 0; i < size; i++) {
-            player.Deck.Add(new Card("Card" + i, 1));
+            player.Deck.Add(new Card(0));
         }
         return player;
     }

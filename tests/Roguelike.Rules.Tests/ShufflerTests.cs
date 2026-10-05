@@ -4,7 +4,7 @@ public class ShufflerTests {
     private static List<Card> MakeCards(int count) {
         List<Card> cards = [];
         for (int i = 0; i < count; i++) {
-            cards.Add(new Card("Card" + i, 1));
+            cards.Add(new Card(0));
         }
         return cards;
     }
