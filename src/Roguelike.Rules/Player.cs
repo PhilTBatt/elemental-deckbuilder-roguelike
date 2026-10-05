@@ -1,8 +1,7 @@
 ﻿namespace Roguelike.Rules;
 
-public class Player : Character {
-    public List<Card> Deck { get; private set; }
-    public Player(int health) : base(health) {
-        Deck = new List<Card>();
-    }
+public class Player(int health) : Character(health) {
+    public Battle? Battle { get; set; }
+
+    public List<Card> Deck { get; private set; } = [];
 }
