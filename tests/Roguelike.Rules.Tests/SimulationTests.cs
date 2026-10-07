@@ -7,7 +7,7 @@ public class SimulationTests {
         for (int i = 0; i < 10; i++) {
             player.Deck.Add(new Card(0));
         }
-        var battle = new Battle(player, new Enemy(15, [new DamageEffect(4)]));
+        var battle = new Battle(new Random(42), player, new Enemy(15, [new DamageEffect(4)]));
         battle.StartTurn();
 
         battle.PlayPlayerTurn();
@@ -20,7 +20,7 @@ public class SimulationTests {
 
     [Fact]
     public void Starting_Player_Beats_The_Slime() {
-        var battle = new Battle(new Player(), new Slime());
+        var battle = new Battle(new Random(42), new Player(), new Slime());
 
         battle.StartBattle();
 

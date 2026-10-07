@@ -6,7 +6,7 @@ public class PlayCardTests {
         for (int i = 0; i < 10; i++) {
             player.Deck.Add(new Card(cardId));
         }
-        return new Battle(player, new Enemy(enemyHealth, [new DamageEffect(4)]));
+        return new Battle(new Random(42), player, new Enemy(enemyHealth, [new DamageEffect(4)]));
     }
 
     [Fact]

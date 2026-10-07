@@ -8,7 +8,7 @@ public enum BattleState {
 }
 
 public class Battle {
-    public Random Random = new Random(42);
+    public Random Random { get; }
     public BattleState State { get; private set; } = BattleState.PlayerTurn;
 
     public Player Player { get; }
@@ -27,7 +27,8 @@ public class Battle {
 
     public int TurnNumber = 0;
 
-    public Battle(Player player, Enemy enemy) {
+    public Battle(Random random, Player player, Enemy enemy) {
+        Random = random;
         Player = player;
         Enemy = enemy;
         DrawPile = [..Player.Deck];

@@ -15,7 +15,7 @@ public class EnemyTests {
         var attack = new DamageEffect(4);
         var block = new BlockEffect(3);
         var enemy = new Enemy(15, [attack, block]);
-        var battle = new Battle(new Player(40), enemy);
+        var battle = new Battle(new Random(42), new Player(40), enemy);
 
         enemy.TakeAction(battle, battle.Player);
         Assert.Equal(36, battle.Player.Health);
@@ -29,7 +29,7 @@ public class EnemyTests {
     [Fact]
     public void Slime_Attacks_For_4_Then_Blocks_For_3() {
         var slime = new Slime();
-        var battle = new Battle(new Player(40), slime);
+        var battle = new Battle(new Random(42), new Player(40), slime);
 
         slime.TakeAction(battle, battle.Player);
         Assert.Equal(15, slime.Health);
