@@ -4,7 +4,7 @@ Console.WriteLine("Welcome to Hadeon!");
 
 var game = new Game();
 
-while (!game.HasQuit && game?.Playthrough?.Battle?.State != BattleState.EnemyWins) {
+while (!game.HasQuit && game.Playthrough?.Battle?.State != BattleState.EnemyWins) {
     Console.WriteLine("Choose an option:");
     foreach (var option in game.Menu.Options) {
         Console.WriteLine($"- {option}");
@@ -17,5 +17,5 @@ while (!game.HasQuit && game?.Playthrough?.Battle?.State != BattleState.EnemyWin
         continue;
     }
 
-    if (game?.Playthrough?.Battle?.State == BattleState.EnemyWins) Console.WriteLine("Game Over!");
+    if (game.Playthrough?.Battle?.State == BattleState.EnemyWins) Console.WriteLine("Game Over!");
 };

@@ -8,7 +8,7 @@ public class Playthrough(int seed) {
 
     public int EncounterCount { get; private set; } = 0;
 
-    public Player Player { get; private set; } = new Player(50);
+    public Player Player { get; private set; } = new Player();
 
     public Battle? Battle { get; private set; } = null;
 
