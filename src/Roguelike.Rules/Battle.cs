@@ -58,6 +58,7 @@ public class Battle {
         if (IsOver) return;
 
         Enemy.EndTurn();
+        ResolveResult();
     }
 
     public void StartBattle() {
@@ -73,14 +74,14 @@ public class Battle {
         if (IsOver) return;
 
         StartTurn();
-        PlayPlayerTurn();
-
         ResolveResult();
         if (IsOver) return;
 
-        EndTurn();
-        
+        PlayPlayerTurn();
         ResolveResult();
+        if (IsOver) return;
+    
+        EndTurn();
     }
 
     public void ResolveResult() {

@@ -9,6 +9,8 @@ public class Character {
 
     public Battle? Battle { get; set; }
 
+    public List<Status> Statuses {get;} = [];
+
     public Character(int health) {
         Health = health;
     }
@@ -27,6 +29,8 @@ public class Character {
     }
 
     public void EndTurn() {
+        foreach (var status in Statuses) status.EndTurn(this);
+        Statuses.RemoveAll(status => status.Stacks <= 0);
     }
 
     public void StartTurn() {
