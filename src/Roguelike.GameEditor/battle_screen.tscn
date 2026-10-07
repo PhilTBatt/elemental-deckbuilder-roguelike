@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cphpeqgfd2056"]
+
+[ext_resource type="Script" uid="uid://ctllwrecdmfyj" path="res://BattleScreen.cs" id="1_3047d"]
+
+[node name="BattleScreen" type="Control" unique_id=938409546]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3047d")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=959506465]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Rows" type="VBoxContainer" parent="MarginContainer" unique_id=359994078]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=990612246]
+layout_mode = 2
+
+[node name="turnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=449310285]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Arena" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=31989260]
+layout_mode = 2
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=1993988088]
+layout_mode = 2
+
+[node name="ResultsOverlay" type="CenterContainer" parent="." unique_id=923409329]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -25,7 +25,7 @@ public class Battle {
 
     public List<Card> DiscardPile { get; private set; } = [];
 
-    public int TurnNumber = 0;
+    public int TurnCount = 0;
 
     public Battle(Random random, Player player, Enemy enemy) {
         Random = random;
@@ -37,7 +37,7 @@ public class Battle {
 
     public void StartTurn() {
         State = BattleState.PlayerTurn;
-        TurnNumber++;
+        TurnCount++;
         PlayerEnergy = 3;
         for (int i = 0; i < 5; i++) PlayerDraw();
 

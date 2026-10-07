@@ -4,14 +4,16 @@ using Roguelike.Rules;
 
 public partial class MainMenu : Control
 {
-	private Game game = new Game();
+	public Game game;
 
 	public override void _Ready()
 	{
-		var newRunButton = GetNode<Button>("CenterContainer/VBoxContainer/NewRunButton");
+		game = GetNode<Session>("/root/Session").Game;
+
+		var newRunButton = GetNode<Button>("CenterContainer/MarginContainer/VBoxContainer/NewRunButton");
 		newRunButton.Pressed += OnNewRunButtonPressed;
 
-		var quitButton = GetNode<Button>("CenterContainer/VBoxContainer/QuitButton");
+		var quitButton = GetNode<Button>("CenterContainer/MarginContainer/VBoxContainer/QuitButton");
 		quitButton.Pressed += OnQuitButtonPressed;
 	}
 
@@ -22,8 +24,7 @@ public partial class MainMenu : Control
 	private void OnNewRunButtonPressed()
 	{
 		game.ChooseMenuOption(MenuOption.NewRun);
-		GD.Print($"Fight result: {game.Playthrough?.Battle?.State}");
-
+		GetTree().ChangeSceneToFile("res://battle_screen.tscn");
 	}
 
 	private void OnQuitButtonPressed()

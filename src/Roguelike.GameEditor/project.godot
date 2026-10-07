@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Roguelike"
+run/main_scene="uid://dcif742p0vndp"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Session="*uid://dxnh7bf2sa2a5"
 
 [display]
 
