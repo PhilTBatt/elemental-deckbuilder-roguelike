@@ -15,6 +15,10 @@ script = ExtResource("1_3047d")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Rows" type="VBoxContainer" parent="MarginContainer" unique_id=359994078]
 layout_mode = 2
@@ -26,19 +30,124 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="TopSpacer" type="Control" parent="MarginContainer/Rows/TopBar" unique_id=611165730]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeedLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=1716972452]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Arena" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=31989260]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerSide" type="VBoxContainer" parent="MarginContainer/Rows/Arena" unique_id=1056956154]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PlayerGap" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=9942482]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PlayerArt" type="ColorRect" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=1767414447]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.7012865, 0.22056806, 0, 1)
+
+[node name="PlayerHealth" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=920076861]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PlayerBlock" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=2135843182]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PlayerStatuses" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=566342633]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="EnemySide" type="VBoxContainer" parent="MarginContainer/Rows/Arena" unique_id=1119204814]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="EnemyIntent" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=711394811]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="EnemyArt" type="ColorRect" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=342084880]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.21353161, 0.4764349, 0.20110974, 1)
+
+[node name="EnemyHealth" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=1655203129]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="EnemyBlock" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=1654061449]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="EnemyStatuses" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=2108121702]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=1993988088]
+custom_minimum_size = Vector2(0, 176)
 layout_mode = 2
 
-[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar" unique_id=173779285]
+[node name="LeftCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1123702966]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1581831115]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1847995770]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Hand" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1199069316]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HandLabel" type="Label" parent="MarginContainer/Rows/BottomBar/Hand" unique_id=1738401978]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1992700552]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=173779285]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "End Turn"
 
+[node name="DiscardPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=633828433]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 2
+
 [node name="ResultsOverlay" type="CenterContainer" parent="." unique_id=923409329]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -46,3 +155,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ResultsPanel" type="PanelContainer" parent="ResultsOverlay" unique_id=665469838]
+layout_mode = 2
+
+[node name="ResultsMargin" type="MarginContainer" parent="ResultsOverlay/ResultsPanel" unique_id=259994009]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ResultsRows" type="VBoxContainer" parent="ResultsOverlay/ResultsPanel/ResultsMargin" unique_id=1354484178]
+layout_mode = 2
+
+[node name="ResultsLabel" type="Label" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=49029361]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=531053452]
+unique_name_in_owner = true
+layout_mode = 2
