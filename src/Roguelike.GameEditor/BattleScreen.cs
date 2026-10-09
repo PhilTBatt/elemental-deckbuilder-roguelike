@@ -11,11 +11,23 @@ public partial class BattleScreen : Control
 		game = GetNode<Session>("/root/Session").Game;
 
 		var turnCount = game.Playthrough.Battle.TurnCount;
-		var turnCountLabel = GetNode<Label>("%turnCountLabel");
+		var turnCountLabel = GetNode<Label>("%TurnCountLabel");
 		turnCountLabel.Text = turnCount.ToString();
+
+		var endTurnButton = GetNode<Button>("%EndTurnButton");
+		endTurnButton.Pressed += OnEndTurnButtonPressed;
 	}
 
 	public override void _Process(double delta)
 	{
+	}
+
+	private void OnEndTurnButtonPressed()
+	{
+		game.Playthrough.Battle.EndTurn();
+		
+		var turnCount = game.Playthrough.Battle.TurnCount;
+		var turnCountLabel = GetNode<Label>("%TurnCountLabel");
+		turnCountLabel.Text = turnCount.ToString();
 	}
 }

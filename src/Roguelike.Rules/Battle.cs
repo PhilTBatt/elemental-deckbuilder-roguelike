@@ -35,39 +35,39 @@ public class Battle {
         Shuffler.Shuffle(Random, DrawPile);
     }
 
+    public void StartBattle() {
+        StartTurn();
+    }
+
     public void StartTurn() {
         State = BattleState.PlayerTurn;
         TurnCount++;
         PlayerEnergy = 3;
         for (int i = 0; i < 5; i++) PlayerDraw();
 
-        Player.StartTurn();
+        Player.StartOfTurn();
     }
 
     public void EndTurn() {
-        Player.EndTurn();
+        Player.EndOfTurn();
         DiscardHand();
-
         ResolveResult();
         if (IsOver) return;
 
         State = BattleState.EnemyTurn;
-        Enemy.StartTurn();
+        Enemy.StartOfTurn();
+        ResolveResult();
+        if (IsOver) return;
+        
         Enemy.TakeAction(this, Player);
-
         ResolveResult();
         if (IsOver) return;
 
-        Enemy.EndTurn();
+        Enemy.EndOfTurn();
         ResolveResult();
-    }
 
-    public void StartBattle() {
-        while (Player.IsAlive && Enemy.IsAlive) {
-            ProcessTurn();
-        }
-
-        EndBattle();
+        StartTurn();
+        ResolveResult();
     }
 
     public void ProcessTurn() {
@@ -77,17 +77,19 @@ public class Battle {
         StartTurn();
         ResolveResult();
         if (IsOver) return;
-
-        PlayPlayerTurn();
-        ResolveResult();
-        if (IsOver) return;
     
         EndTurn();
     }
 
     public void ResolveResult() {
-        if (!Player.IsAlive) State = BattleState.EnemyWins;
-        else if (!Enemy.IsAlive) State = BattleState.PlayerWins;
+        if (!Player.IsAlive) {
+            State = BattleState.EnemyWins;
+            EndBattle();
+        }
+        else if (!Enemy.IsAlive) {
+            State = BattleState.PlayerWins;
+            EndBattle();
+        }
     }
 
     public void EndBattle() {
@@ -125,13 +127,5 @@ public class Battle {
         foreach (var effect in card.Effects) effect.Apply(this, Player, Enemy);
         DiscardPile.Add(card);
         return true;
-    }
-
-    public void PlayPlayerTurn() {
-        foreach (var card in PlayerHand.ToList()) {
-            PlayCard(card);
-            ResolveResult();
-            if (IsOver) return;
-        }
     }
 }

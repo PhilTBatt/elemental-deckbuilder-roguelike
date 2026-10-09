@@ -22,7 +22,7 @@ layout_mode = 2
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=990612246]
 layout_mode = 2
 
-[node name="turnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=449310285]
+[node name="TurnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=449310285]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -31,6 +31,12 @@ layout_mode = 2
 
 [node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=1993988088]
 layout_mode = 2
+
+[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar" unique_id=173779285]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "End Turn"
 
 [node name="ResultsOverlay" type="CenterContainer" parent="." unique_id=923409329]
 visible = false

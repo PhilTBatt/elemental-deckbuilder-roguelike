@@ -28,12 +28,12 @@ public class Character {
         Block += block;
     }
 
-    public void EndTurn() {
+    public void EndOfTurn() {
         foreach (var status in Statuses) status.EndTurn(this);
         Statuses.RemoveAll(status => status.Stacks <= 0);
     }
 
-    public void StartTurn() {
+    public void StartOfTurn() {
         Block = 0;
     }
 }
