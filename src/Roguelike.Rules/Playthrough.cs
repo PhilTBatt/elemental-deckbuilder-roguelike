@@ -20,7 +20,7 @@ public class Playthrough(int seed) {
 
     public void StartNextEncounter() {
         EncounterCount++;
-        var enemy = new Enemy(25, [new DamageEffect(5)]);
+        var enemy = new Enemy(25, [new DamageEffect(5), new BlockEffect(5), new DamageEffect(5)]);
         Battle = new Battle(Random, Player, enemy);
         Battle.StartBattle();
 

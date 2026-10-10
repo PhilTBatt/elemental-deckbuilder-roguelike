@@ -79,6 +79,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="EnemyIntent" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=711394811]
+unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
 
@@ -113,11 +114,11 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 2
 
-[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1581831115]
+[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1847995770]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1847995770]
+[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1581831115]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -129,6 +130,7 @@ alignment = 1
 [node name="HandLabel" type="Label" parent="MarginContainer/Rows/BottomBar/Hand" unique_id=1738401978]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 
 [node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1992700552]
 custom_minimum_size = Vector2(150, 0)
@@ -138,7 +140,7 @@ alignment = 2
 [node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=173779285]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "End Turn"
 
 [node name="DiscardPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=633828433]
@@ -172,7 +174,9 @@ layout_mode = 2
 [node name="ResultsLabel" type="Label" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=49029361]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 
 [node name="BackButton" type="Button" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=531053452]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30

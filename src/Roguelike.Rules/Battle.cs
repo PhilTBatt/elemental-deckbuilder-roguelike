@@ -21,7 +21,7 @@ public class Battle {
 
     public List<Card> DrawPile { get; private set; } = [];
 
-    public List<Card> PlayerHand { get; private set; } = new List<Card>();
+    public List<Card> PlayerHand { get; private set; } = [];
 
     public List<Card> DiscardPile { get; private set; } = [];
 
@@ -37,6 +37,17 @@ public class Battle {
 
     public void StartBattle() {
         StartTurn();
+    }
+
+    public void ProcessTurn() {
+        ResolveResult();
+        if (IsOver) return;
+
+        StartTurn();
+        ResolveResult();
+        if (IsOver) return;
+    
+        EndTurn();
     }
 
     public void StartTurn() {
@@ -70,15 +81,13 @@ public class Battle {
         ResolveResult();
     }
 
-    public void ProcessTurn() {
-        ResolveResult();
-        if (IsOver) return;
-
-        StartTurn();
-        ResolveResult();
-        if (IsOver) return;
     
-        EndTurn();
+    public void EndBattle() {
+        if (State == BattleState.PlayerWins) {
+            
+        } else if (State == BattleState.EnemyWins) {
+            
+        }
     }
 
     public void ResolveResult() {
@@ -90,19 +99,6 @@ public class Battle {
             State = BattleState.PlayerWins;
             EndBattle();
         }
-    }
-
-    public void EndBattle() {
-        if (State == BattleState.PlayerWins) {
-            
-        } else if (State == BattleState.EnemyWins) {
-            
-        }
-    }
-
-    public void DiscardHand() {
-        DiscardPile.AddRange(PlayerHand);
-        PlayerHand.Clear();
     }
 
     public void PlayerDraw() {
@@ -117,6 +113,11 @@ public class Battle {
         var card = DrawPile[^1];
         DrawPile.RemoveAt(DrawPile.Count - 1);
         PlayerHand.Add(card);
+    }
+
+    public void DiscardHand() {
+        DiscardPile.AddRange(PlayerHand);
+        PlayerHand.Clear();
     }
 
     public bool PlayCard(Card card) {
