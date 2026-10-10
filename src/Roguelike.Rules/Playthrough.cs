@@ -12,7 +12,7 @@ public class Playthrough(int seed) {
 
     public Battle? Battle { get; private set; } = null;
 
-    public bool IsOver => Player.Health == 0;
+    public bool IsOver => !Player.IsAlive;
 
     public void StartPlaythrough()  {
         StartNextEncounter();
@@ -20,7 +20,7 @@ public class Playthrough(int seed) {
 
     public void StartNextEncounter() {
         EncounterCount++;
-        var enemy = new Enemy(20, [new DamageEffect(5), new BlockEffect(5), new DamageEffect(5)]);
+        var enemy = new Slime();
         Battle = new Battle(Random, Player, enemy);
         Battle.StartOfBattle();
 

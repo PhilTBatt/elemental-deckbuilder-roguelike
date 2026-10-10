@@ -1,12 +1,42 @@
 namespace Roguelike.Rules;
 
-public abstract class Effect(string name, int amount) {
-    public string Name { get;} = name;
+public enum EffectType { Attack, Block }
 
-    public int Amount { get; } = amount;
+public class Effect {
+    public EffectType Kind { get; }
 
-    public abstract string Description { get; }
+    public int Amount { get; }
 
-    public abstract void Apply(Battle battle, Character caster, Character target);
+    public string Description { get; }
+
+    public Effect(EffectType kind, int amount) {
+        Kind = kind;
+        Amount = amount;
+
+        switch (Kind) {
+            case EffectType.Attack:
+                Description = $"Deal {Amount} damage";
+                break;
+
+            case EffectType.Block:
+                Description = $"Gain {Amount} block";
+                break;
+                
+            default:
+                throw new ArgumentException("No effect has type " + kind);
+        }
+    }
+
+    public void Apply(Battle battle, Character caster, Character target) {
+        switch (Kind) {
+            case EffectType.Attack:
+                target.TakeDamage(Amount);
+                break;
+
+            case EffectType.Block:
+                caster.AddBlock(Amount);
+                break;
+        }
+    }
 
 }

@@ -7,7 +7,9 @@ public class Enemy : Character {
 
     private int nextMove;
 
-    public Effect Intent => Moves[nextMove];   
+    public Effect Intent => Moves[nextMove];  
+
+    public EffectType IntentType => Intent.Kind == EffectType.Attack ? EffectType.Attack : EffectType.Block;
 
     public Enemy(int health, List<Effect> moves) : base(health) {
         Moves = moves;

@@ -9,7 +9,7 @@ public partial class CardView : PanelContainer
 	{
 		GetNode<Label>("%CostLabel").Text = card.Cost.ToString();
 		GetNode<Label>("%NameLabel").Text = card.Name;
-		GetNode<Label>("%TypeLabel").Text = card.Effects[0].Name;
+		GetNode<Label>("%TypeLabel").Text = card.CardType.ToString();
 		GetNode<Label>("%DescriptionLabel").Text = card.Description;
 	}
 }

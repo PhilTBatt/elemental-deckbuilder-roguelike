@@ -25,7 +25,9 @@ public class Battle {
 
     public List<Card> DiscardPile { get; private set; } = [];
 
-    public int TurnCount = 0;
+    public int TurnCount { get; private set; }  = 0;
+
+    public EffectQueue EffectQueue { get; } = new EffectQueue();
 
     public Battle(Random random, Player player, Enemy enemy) {
         Random = random;
@@ -72,6 +74,8 @@ public class Battle {
     }
 
     public void ResolveResult() {
+        if (IsOver) return;
+
         if (!Player.IsAlive) {
             State = BattleState.EnemyWins;
             EndBattle();
@@ -110,9 +114,18 @@ public class Battle {
         if (!PlayerHand.Remove(card)) return false;
         PlayerEnergy -= card.Cost;
 
-        foreach (var effect in card.Effects) effect.Apply(this, Player, Enemy);
+        foreach (var effect in card.Effects) EffectQueue.AddToBottom(effect, Player, Enemy);
+        RunQueue();
         DiscardPile.Add(card);
         ResolveResult();
         return true;
+    }
+
+    public void RunQueue() {
+        while (!EffectQueue.IsEmpty && !IsOver) {
+            var next = EffectQueue.TakeNext();
+            next.Effect.Apply(this, next.Caster, next.Target);
+            ResolveResult();
+        }
     }
 }

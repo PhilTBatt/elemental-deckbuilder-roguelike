@@ -50,7 +50,7 @@ public partial class BattleScreen : Control
 
 		GetNode<Label>("%EnemyStatuses").Text = string.Join(", ", game.Playthrough.Battle.Enemy.Statuses.Select(status => $"{status.Kind}: {status.Stacks}"));
 
-		GetNode<Label>("%EnemyIntent").Text = $"{game.Playthrough.Battle.Enemy.Intent.Name}: {game.Playthrough.Battle.Enemy.Intent.Amount}";
+		GetNode<Label>("%EnemyIntent").Text = $"{game.Playthrough.Battle.Enemy.Intent.Kind}: {game.Playthrough.Battle.Enemy.Intent.Amount}";
 
 
 		GetNode<Label>("%GoopAmountLabel").Text = game.Playthrough.Battle.PlayerEnergy.ToString();
