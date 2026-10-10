@@ -29,47 +29,35 @@ public partial class BattleScreen : Control
 	private void OnEndTurnButtonPressed()
 	{
 		game.Playthrough.Battle.EndTurn();
-		
 		UpdateLabels();
 	}
 
 	public void UpdateLabels()
 	{
-		var turnCount = game.Playthrough.Battle.TurnCount;
-		GetNode<Label>("%TurnCountLabel").Text = turnCount.ToString();
+		GetNode<Label>("%TurnCountLabel").Text = game.Playthrough.Battle.TurnCount.ToString();
 
 
-		var playerHealth = game.Playthrough.Player.Health;
-		GetNode<Label>("%PlayerHealth").Text = "Health: " + playerHealth.ToString();
+		GetNode<Label>("%PlayerHealth").Text = "Health: " + game.Playthrough.Player.Health.ToString();
 
-		var playerBlock = game.Playthrough.Player.Block;
-		GetNode<Label>("%PlayerBlock").Text = "Block: " +playerBlock.ToString();
+		GetNode<Label>("%PlayerBlock").Text = "Block: " + game.Playthrough.Player.Block.ToString();
 
-		var playerStatus = game.Playthrough.Player.Statuses;
-		GetNode<Label>("%PlayerStatuses").Text = string.Join(", ", playerStatus.Select(status => $"{status.Kind}: {status.Stacks}"));
+		GetNode<Label>("%PlayerStatuses").Text = string.Join(", ", game.Playthrough.Player.Statuses.Select(status => $"{status.Kind}: {status.Stacks}"));
 
 
-		var enemyHealth = game.Playthrough.Battle.Enemy.Health;
-		GetNode<Label>("%EnemyHealth").Text = "Health: " +enemyHealth.ToString();
+		GetNode<Label>("%EnemyHealth").Text = "Health: " + game.Playthrough.Battle.Enemy.Health.ToString();
 
-		var enemyBlock = game.Playthrough.Battle.Enemy.Block;
-		GetNode<Label>("%EnemyBlock").Text = "Block: " +enemyBlock.ToString();
+		GetNode<Label>("%EnemyBlock").Text = "Block: " + game.Playthrough.Battle.Enemy.Block.ToString();
 
-		var enemyStatus = game.Playthrough.Battle.Enemy.Statuses;
-		GetNode<Label>("%EnemyStatuses").Text = string.Join(", ", enemyStatus.Select(status => $"{status.Kind}: {status.Stacks}"));
+		GetNode<Label>("%EnemyStatuses").Text = string.Join(", ", game.Playthrough.Battle.Enemy.Statuses.Select(status => $"{status.Kind}: {status.Stacks}"));
 
-		var enemyIntent = game.Playthrough.Battle.Enemy.Intent;
-		GetNode<Label>("%EnemyIntent").Text = $"{enemyIntent.Name}: {enemyIntent.Amount}";
+		GetNode<Label>("%EnemyIntent").Text = $"{game.Playthrough.Battle.Enemy.Intent.Name}: {game.Playthrough.Battle.Enemy.Intent.Amount}";
 
 
-		var goopAmount = game.Playthrough.Battle.PlayerEnergy;
-		GetNode<Label>("%GoopAmountLabel").Text = goopAmount.ToString();
+		GetNode<Label>("%GoopAmountLabel").Text = game.Playthrough.Battle.PlayerEnergy.ToString();
 
-		var drawPile = game.Playthrough.Battle.DrawPile;
-		GetNode<Label>("%DrawPileLabel").Text = drawPile.Count.ToString();
+		GetNode<Label>("%DrawPileLabel").Text = game.Playthrough.Battle.DrawPile.Count.ToString();
 
-		var discardPile = game.Playthrough.Battle.DiscardPile;
-		GetNode<Label>("%DiscardPileLabel").Text = discardPile.Count.ToString();
+		GetNode<Label>("%DiscardPileLabel").Text = game.Playthrough.Battle.DiscardPile.Count.ToString();
 
 		UpdateHand();
 	}

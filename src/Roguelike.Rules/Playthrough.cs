@@ -22,7 +22,7 @@ public class Playthrough(int seed) {
         EncounterCount++;
         var enemy = new Enemy(20, [new DamageEffect(5), new BlockEffect(5), new DamageEffect(5)]);
         Battle = new Battle(Random, Player, enemy);
-        Battle.StartBattle();
+        Battle.StartOfBattle();
 
         ShowRewards();
     }

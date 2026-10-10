@@ -35,19 +35,8 @@ public class Battle {
         Shuffler.Shuffle(Random, DrawPile);
     }
 
-    public void StartBattle() {
+    public void StartOfBattle() {
         StartTurn();
-    }
-
-    public void ProcessTurn() {
-        ResolveResult();
-        if (IsOver) return;
-
-        StartTurn();
-        ResolveResult();
-        if (IsOver) return;
-    
-        EndTurn();
     }
 
     public void StartTurn() {
@@ -59,34 +48,26 @@ public class Battle {
         Player.StartOfTurn();
     }
 
-    public void EndTurn() {
-        Player.EndOfTurn();
-        DiscardHand();
-        ResolveResult();
-        if (IsOver) return;
+    public void EndTurn() => RunSteps(
+        Player.EndOfTurn,
+        DiscardHand,
+        Enemy.StartOfTurn,
+        () => State = BattleState.EnemyTurn,
+        () => Enemy.TakeAction(this, Player),
+        Enemy.EndOfTurn,
+        StartTurn
+    );
 
-        State = BattleState.EnemyTurn;
-        Enemy.StartOfTurn();
-        ResolveResult();
-        if (IsOver) return;
-        
-        Enemy.TakeAction(this, Player);
-        ResolveResult();
-        if (IsOver) return;
-
-        Enemy.EndOfTurn();
-        ResolveResult();
-
-        StartTurn();
-        ResolveResult();
+    public void DiscardHand() {
+        DiscardPile.AddRange(PlayerHand);
+        PlayerHand.Clear();
     }
 
-    
-    public void EndBattle() {
-        if (State == BattleState.PlayerWins) {
-            
-        } else if (State == BattleState.EnemyWins) {
-            
+    private void RunSteps(params Action[] steps) {
+        foreach (var step in steps) {
+            if (IsOver) return;
+            step();
+            ResolveResult();
         }
     }
 
@@ -98,6 +79,14 @@ public class Battle {
         else if (!Enemy.IsAlive) {
             State = BattleState.PlayerWins;
             EndBattle();
+        }
+    }
+
+    public void EndBattle() {
+        if (State == BattleState.PlayerWins) {
+            
+        } else if (State == BattleState.EnemyWins) {
+            
         }
     }
 
@@ -114,11 +103,6 @@ public class Battle {
         var card = DrawPile[^1];
         DrawPile.RemoveAt(DrawPile.Count - 1);
         PlayerHand.Add(card);
-    }
-
-    public void DiscardHand() {
-        DiscardPile.AddRange(PlayerHand);
-        PlayerHand.Clear();
     }
 
     public bool PlayCard(Card card) {
