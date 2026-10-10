@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cphpeqgfd2056"]
 
-[ext_resource type="Script" path="res://BattleScreen.cs" id="1_ilck6"]
+[ext_resource type="Script" uid="uid://ctllwrecdmfyj" path="res://BattleScreen.cs" id="1_ilck6"]
 
 [sub_resource type="Gradient" id="SkyGradient"]
 offsets = PackedFloat32Array(0, 0.38, 0.49, 0.545, 1)
@@ -149,22 +149,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="ButtonHover"]
-content_margin_left = 18.0
-content_margin_top = 8.0
-content_margin_right = 18.0
-content_margin_bottom = 8.0
-bg_color = Color(0.212, 0.235, 0.298, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.639, 0.686, 0.769, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="StyleBoxFlat" id="ButtonPressed"]
 content_margin_left = 18.0
 content_margin_top = 8.0
@@ -176,6 +160,22 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.478, 0.529, 0.62, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="ButtonHover"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.212, 0.235, 0.298, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.639, 0.686, 0.769, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -195,7 +195,7 @@ corner_radius_bottom_left = 14
 shadow_color = Color(0, 0, 0, 0.5)
 shadow_size = 16
 
-[node name="BattleScreen" type="Control"]
+[node name="BattleScreen" type="Control" unique_id=732877773]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +204,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ilck6")
 
-[node name="Sky" type="TextureRect" parent="."]
+[node name="Sky" type="TextureRect" parent="." unique_id=1744004685]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,7 +215,7 @@ mouse_filter = 2
 texture = SubResource("SkyTexture")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=663286164]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,269 +227,266 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 16
 
-[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+[node name="Rows" type="VBoxContainer" parent="MarginContainer" unique_id=714830482]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Rows"]
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=2028835644]
 layout_mode = 2
 
-[node name="TurnPill" type="PanelContainer" parent="MarginContainer/Rows/TopBar"]
+[node name="TurnPill" type="PanelContainer" parent="MarginContainer/Rows/TopBar" unique_id=691797473]
 layout_mode = 2
 theme_override_styles/panel = SubResource("Pill")
 
-[node name="TurnRow" type="HBoxContainer" parent="MarginContainer/Rows/TopBar/TurnPill"]
+[node name="TurnRow" type="HBoxContainer" parent="MarginContainer/Rows/TopBar/TurnPill" unique_id=517833666]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="TurnCaption" type="Label" parent="MarginContainer/Rows/TopBar/TurnPill/TurnRow"]
+[node name="TurnCaption" type="Label" parent="MarginContainer/Rows/TopBar/TurnPill/TurnRow" unique_id=1840072109]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
 theme_override_font_sizes/font_size = 14
 text = "Turn"
 
-[node name="TurnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar/TurnPill/TurnRow"]
+[node name="TurnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar/TurnPill/TurnRow" unique_id=1488865393]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
 theme_override_font_sizes/font_size = 16
 text = "1"
 
-[node name="TopSpacer" type="Control" parent="MarginContainer/Rows/TopBar"]
+[node name="TopSpacer" type="Control" parent="MarginContainer/Rows/TopBar" unique_id=1526470005]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SeedLabel" type="Label" parent="MarginContainer/Rows/TopBar"]
+[node name="SeedLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=1776515508]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
 theme_override_font_sizes/font_size = 13
 text = "Seed"
 
-[node name="Arena" type="HBoxContainer" parent="MarginContainer/Rows"]
+[node name="Arena" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=1893845670]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayerSide" type="VBoxContainer" parent="MarginContainer/Rows/Arena"]
+[node name="PlayerSide" type="VBoxContainer" parent="MarginContainer/Rows/Arena" unique_id=1747541207]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="PlayerGap" type="Control" parent="MarginContainer/Rows/Arena/PlayerSide"]
+[node name="PlayerGap" type="Control" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=292267873]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="PlayerArt" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide"]
-layout_mode = 2
+[node name="PlayerArt" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=1974888122]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("PlayerArt")
 
-[node name="PlayerShadow" type="Panel" parent="MarginContainer/Rows/Arena/PlayerSide"]
-layout_mode = 2
+[node name="PlayerShadow" type="Panel" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=852740992]
 custom_minimum_size = Vector2(124, 14)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("Shadow")
 
-[node name="PlayerStats" type="HBoxContainer" parent="MarginContainer/Rows/Arena/PlayerSide"]
+[node name="PlayerStats" type="HBoxContainer" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=744713170]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 
-[node name="PlayerHealthPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats"]
+[node name="PlayerHealthPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats" unique_id=1707887746]
 layout_mode = 2
 theme_override_styles/panel = SubResource("Health")
 
-[node name="PlayerHealth" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats/PlayerHealthPill"]
+[node name="PlayerHealth" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats/PlayerHealthPill" unique_id=46150439]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.953, 0.839, 0.855, 1)
 theme_override_font_sizes/font_size = 15
 text = "Health: 40"
 
-[node name="PlayerBlockPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats"]
+[node name="PlayerBlockPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats" unique_id=821987902]
 layout_mode = 2
 theme_override_styles/panel = SubResource("Block")
 
-[node name="PlayerBlock" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats/PlayerBlockPill"]
+[node name="PlayerBlock" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats/PlayerBlockPill" unique_id=1267646861]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.839, 0.894, 0.953, 1)
 theme_override_font_sizes/font_size = 15
 text = "Block: 0"
 
-[node name="PlayerStatuses" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide"]
+[node name="PlayerStatuses" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=12195362]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.949, 0.651, 0.353, 1)
 theme_override_font_sizes/font_size = 14
-text = ""
 horizontal_alignment = 1
 
-[node name="EnemySide" type="VBoxContainer" parent="MarginContainer/Rows/Arena"]
+[node name="EnemySide" type="VBoxContainer" parent="MarginContainer/Rows/Arena" unique_id=1398644157]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 6
+alignment = 1
 
-[node name="EnemyIntentBubble" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide"]
-layout_mode = 2
+[node name="EnemyIntentBubble" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=85006336]
 custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("Intent")
 
-[node name="EnemyIntent" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyIntentBubble"]
+[node name="EnemyIntent" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyIntentBubble" unique_id=1205695847]
 unique_name_in_owner = true
 layout_mode = 2
-vertical_alignment = 1
 theme_override_colors/font_color = Color(0.969, 0.765, 0.631, 1)
 theme_override_font_sizes/font_size = 16
 text = "Attack: 4"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="EnemyArt" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide"]
-layout_mode = 2
+[node name="EnemyArt" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=1783666107]
 custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("EnemyArt")
 
-[node name="EnemyShadow" type="Panel" parent="MarginContainer/Rows/Arena/EnemySide"]
-layout_mode = 2
+[node name="EnemyShadow" type="Panel" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=2133414504]
 custom_minimum_size = Vector2(124, 14)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("Shadow")
 
-[node name="EnemyStats" type="HBoxContainer" parent="MarginContainer/Rows/Arena/EnemySide"]
+[node name="EnemyStats" type="HBoxContainer" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=2080558063]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 
-[node name="EnemyHealthPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats"]
+[node name="EnemyHealthPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats" unique_id=1406113795]
 layout_mode = 2
 theme_override_styles/panel = SubResource("Health")
 
-[node name="EnemyHealth" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats/EnemyHealthPill"]
+[node name="EnemyHealth" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats/EnemyHealthPill" unique_id=1648946711]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.953, 0.839, 0.855, 1)
 theme_override_font_sizes/font_size = 15
 text = "Health: 40"
 
-[node name="EnemyBlockPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats"]
+[node name="EnemyBlockPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats" unique_id=912462243]
 layout_mode = 2
 theme_override_styles/panel = SubResource("Block")
 
-[node name="EnemyBlock" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats/EnemyBlockPill"]
+[node name="EnemyBlock" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats/EnemyBlockPill" unique_id=1972668067]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.839, 0.894, 0.953, 1)
 theme_override_font_sizes/font_size = 15
 text = "Block: 0"
 
-[node name="EnemyStatuses" type="Label" parent="MarginContainer/Rows/Arena/EnemySide"]
+[node name="EnemyStatuses" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=155301696]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.949, 0.651, 0.353, 1)
 theme_override_font_sizes/font_size = 14
-text = ""
 horizontal_alignment = 1
 
-[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows"]
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=765892632]
 custom_minimum_size = Vector2(0, 176)
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="LeftCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar"]
+[node name="LeftCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=756168854]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-alignment = 2
 theme_override_constants/separation = 10
+alignment = 2
 
-[node name="GoopOrb" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner"]
-layout_mode = 2
+[node name="GoopOrb" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=971517370]
 custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("Goop")
 
-[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/GoopOrb"]
+[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/GoopOrb" unique_id=241803397]
 unique_name_in_owner = true
 layout_mode = 2
-vertical_alignment = 1
 theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
 theme_override_font_sizes/font_size = 28
 text = "3"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DrawPile" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner"]
+[node name="DrawPile" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=843474945]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("Pile")
 
-[node name="DrawRow" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile"]
+[node name="DrawRow" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile" unique_id=539373690]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="DrawCaption" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile/DrawRow"]
+[node name="DrawCaption" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile/DrawRow" unique_id=401811878]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
 theme_override_font_sizes/font_size = 14
 text = "Draw"
 
-[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile/DrawRow"]
+[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile/DrawRow" unique_id=835585393]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
 theme_override_font_sizes/font_size = 16
 text = "5"
 
-[node name="Hand" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar"]
+[node name="Hand" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1221576264]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
 theme_override_constants/separation = 8
+alignment = 1
 
-[node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar"]
+[node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=2119825819]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-alignment = 2
 theme_override_constants/separation = 10
+alignment = 2
 
-[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar/RightCorner"]
+[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=1997532436]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("ButtonNormal")
-theme_override_styles/hover = SubResource("ButtonHover")
 theme_override_styles/pressed = SubResource("ButtonPressed")
+theme_override_styles/hover = SubResource("ButtonHover")
 text = "End turn"
 
-[node name="DiscardPile" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/RightCorner"]
+[node name="DiscardPile" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=930778113]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("Pile")
 
-[node name="DiscardRow" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile"]
+[node name="DiscardRow" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile" unique_id=880150400]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="DiscardCaption" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile/DiscardRow"]
+[node name="DiscardCaption" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile/DiscardRow" unique_id=176403576]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
 theme_override_font_sizes/font_size = 14
 text = "Discard"
 
-[node name="DiscardPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile/DiscardRow"]
+[node name="DiscardPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile/DiscardRow" unique_id=1866876813]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
 theme_override_font_sizes/font_size = 16
 text = "0"
 
-[node name="ResultsOverlay" type="CenterContainer" parent="."]
+[node name="ResultsOverlay" type="CenterContainer" parent="." unique_id=833356589]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -499,22 +496,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResultsPanel" type="PanelContainer" parent="ResultsOverlay"]
+[node name="ResultsPanel" type="PanelContainer" parent="ResultsOverlay" unique_id=593140303]
 layout_mode = 2
 theme_override_styles/panel = SubResource("Results")
 
-[node name="ResultsMargin" type="MarginContainer" parent="ResultsOverlay/ResultsPanel"]
+[node name="ResultsMargin" type="MarginContainer" parent="ResultsOverlay/ResultsPanel" unique_id=1870993247]
 layout_mode = 2
 theme_override_constants/margin_left = 36
 theme_override_constants/margin_top = 28
 theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 28
 
-[node name="ResultsRows" type="VBoxContainer" parent="ResultsOverlay/ResultsPanel/ResultsMargin"]
+[node name="ResultsRows" type="VBoxContainer" parent="ResultsOverlay/ResultsPanel/ResultsMargin" unique_id=1514776463]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="ResultsLabel" type="Label" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows"]
+[node name="ResultsLabel" type="Label" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=607674937]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
@@ -522,12 +519,12 @@ theme_override_font_sizes/font_size = 28
 text = "You win"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows"]
+[node name="BackButton" type="Button" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=1188944169]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("ButtonNormal")
-theme_override_styles/hover = SubResource("ButtonHover")
 theme_override_styles/pressed = SubResource("ButtonPressed")
+theme_override_styles/hover = SubResource("ButtonHover")
 text = "Back to menu"

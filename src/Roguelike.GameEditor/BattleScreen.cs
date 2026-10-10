@@ -13,12 +13,11 @@ public partial class BattleScreen : Control
 	{
 		game = GetNode<Session>("/root/Session").Game;
 
-		var endTurnButton = GetNode<Button>("%EndTurnButton");
-		endTurnButton.Pressed += OnEndTurnButtonPressed;
+		GetNode<Button>("%EndTurnButton").Pressed += OnEndTurnButtonPressed;
 
-		var seed = game.Playthrough.Seed;
-		var seedLabel = GetNode<Label>("%SeedLabel");
-		seedLabel.Text = seed.ToString();
+		GetNode<Label>("%SeedLabel").Text = game.Playthrough.Seed.ToString();
+
+		GetNode<Button>("%BackButton").Pressed += () => GetTree().ChangeSceneToFile("res://main_menu.tscn");
 
 		UpdateLabels();
 	}
@@ -37,51 +36,40 @@ public partial class BattleScreen : Control
 	public void UpdateLabels()
 	{
 		var turnCount = game.Playthrough.Battle.TurnCount;
-		var turnCountLabel = GetNode<Label>("%TurnCountLabel");
-		turnCountLabel.Text = turnCount.ToString();
+		GetNode<Label>("%TurnCountLabel").Text = turnCount.ToString();
 
 
 		var playerHealth = game.Playthrough.Player.Health;
-		var playerHealthLabel = GetNode<Label>("%PlayerHealth");
-		playerHealthLabel.Text = "Health: " + playerHealth.ToString();
+		GetNode<Label>("%PlayerHealth").Text = "Health: " + playerHealth.ToString();
 
 		var playerBlock = game.Playthrough.Player.Block;
-		var playerBlockLabel = GetNode<Label>("%PlayerBlock");
-		playerBlockLabel.Text = "Block: " +playerBlock.ToString();
+		GetNode<Label>("%PlayerBlock").Text = "Block: " +playerBlock.ToString();
 
 		var playerStatus = game.Playthrough.Player.Statuses;
-		var playerStatusLabel = GetNode<Label>("%PlayerStatuses");
-		playerStatusLabel.Text = string.Join(", ", playerStatus.Select(status => $"{status.Kind}: {status.Stacks}"));
+		GetNode<Label>("%PlayerStatuses").Text = string.Join(", ", playerStatus.Select(status => $"{status.Kind}: {status.Stacks}"));
 
 
 		var enemyHealth = game.Playthrough.Battle.Enemy.Health;
-		var enemyHealthLabel = GetNode<Label>("%EnemyHealth");
-		enemyHealthLabel.Text = "Health: " +enemyHealth.ToString();
+		GetNode<Label>("%EnemyHealth").Text = "Health: " +enemyHealth.ToString();
 
 		var enemyBlock = game.Playthrough.Battle.Enemy.Block;
-		var enemyBlockLabel = GetNode<Label>("%EnemyBlock");
-		enemyBlockLabel.Text = "Block: " +enemyBlock.ToString();
+		GetNode<Label>("%EnemyBlock").Text = "Block: " +enemyBlock.ToString();
 
 		var enemyStatus = game.Playthrough.Battle.Enemy.Statuses;
-		var enemyStatusLabel = GetNode<Label>("%EnemyStatuses");
-		enemyStatusLabel.Text = string.Join(", ", enemyStatus.Select(status => $"{status.Kind}: {status.Stacks}"));
+		GetNode<Label>("%EnemyStatuses").Text = string.Join(", ", enemyStatus.Select(status => $"{status.Kind}: {status.Stacks}"));
 
 		var enemyIntent = game.Playthrough.Battle.Enemy.Intent;
-		var enemyIntentLabel = GetNode<Label>("%EnemyIntent");
-		enemyIntentLabel.Text = $"{enemyIntent.Name}: {enemyIntent.Amount}";
+		GetNode<Label>("%EnemyIntent").Text = $"{enemyIntent.Name}: {enemyIntent.Amount}";
 
 
 		var goopAmount = game.Playthrough.Battle.PlayerEnergy;
-		var goopAmountLabel = GetNode<Label>("%GoopAmountLabel");
-		goopAmountLabel.Text = goopAmount.ToString();
+		GetNode<Label>("%GoopAmountLabel").Text = goopAmount.ToString();
 
 		var drawPile = game.Playthrough.Battle.DrawPile;
-		var drawPileLabel = GetNode<Label>("%DrawPileLabel");
-		drawPileLabel.Text = drawPile.Count.ToString();
+		GetNode<Label>("%DrawPileLabel").Text = drawPile.Count.ToString();
 
 		var discardPile = game.Playthrough.Battle.DiscardPile;
-		var discardPileLabel = GetNode<Label>("%DiscardPileLabel");
-		discardPileLabel.Text = discardPile.Count.ToString();
+		GetNode<Label>("%DiscardPileLabel").Text = discardPile.Count.ToString();
 
 		UpdateHand();
 	}
@@ -97,6 +85,10 @@ public partial class BattleScreen : Control
 			hand.AddChild(cardView);
 			cardView.Setup(card);
 			cardView.ClickArea.Pressed += () => OnCardPressed(card);
+
+			var canAfford = card.Cost <= game.Playthrough.Battle.PlayerEnergy;
+			cardView.ClickArea.Visible = canAfford;
+			cardView.Modulate = canAfford ? Colors.White : new Color(1, 1, 1, 0.4f);
 		}
 	}
 
@@ -104,5 +96,13 @@ public partial class BattleScreen : Control
 	{
 		game.Playthrough.Battle.PlayCard(card);
 		UpdateLabels();
+		ShowRewards();
+	}
+
+	private void ShowRewards()
+	{
+		var battle = game.Playthrough.Battle;
+		GetNode<Control>("%ResultsOverlay").Visible = battle.IsOver;
+		GetNode<Label>("%ResultsLabel").Text = battle.State == BattleState.PlayerWins ? "You win" : "You lose";
 	}
 }
