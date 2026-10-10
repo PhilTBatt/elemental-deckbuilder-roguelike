@@ -1,150 +1,495 @@
-[gd_scene format=3 uid="uid://cphpeqgfd2056"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://ctllwrecdmfyj" path="res://BattleScreen.cs" id="1_3047d"]
+[ext_resource type="Script" path="res://BattleScreen.cs" id="1_ilck6"]
 
-[node name="BattleScreen" type="Control" unique_id=938409546]
+[sub_resource type="Gradient" id="SkyGradient"]
+offsets = PackedFloat32Array(0, 0.38, 0.49, 0.545, 1)
+colors = PackedColorArray(0.153, 0.173, 0.243, 1, 0.114, 0.125, 0.188, 1, 0.227, 0.145, 0.141, 1, 0.118, 0.102, 0.122, 1, 0.059, 0.063, 0.082, 1)
+
+[sub_resource type="GradientTexture2D" id="SkyTexture"]
+gradient = SubResource("SkyGradient")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="Pill"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.169, 0.188, 0.239, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.29, 0.322, 0.388, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="PlayerArt"]
+bg_color = Color(0.243, 0.38, 0.439, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.435, 0.584, 0.639, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="Shadow"]
+bg_color = Color(0, 0, 0, 0.35)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="Health"]
+content_margin_left = 12.0
+content_margin_top = 3.0
+content_margin_right = 12.0
+content_margin_bottom = 3.0
+bg_color = Color(0.29, 0.122, 0.153, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.612, 0.227, 0.282, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Block"]
+content_margin_left = 12.0
+content_margin_top = 3.0
+content_margin_right = 12.0
+content_margin_bottom = 3.0
+bg_color = Color(0.122, 0.2, 0.286, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247, 0.431, 0.62, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Intent"]
+content_margin_left = 14.0
+content_margin_top = 4.0
+content_margin_right = 14.0
+content_margin_bottom = 4.0
+bg_color = Color(0.227, 0.141, 0.125, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.91, 0.412, 0.18, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="EnemyArt"]
+bg_color = Color(0.42, 0.243, 0.306, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.639, 0.416, 0.486, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="Goop"]
+bg_color = Color(0.361, 0.659, 0.329, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.4, 0.18, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="Pile"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.169, 0.188, 0.239, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.29, 0.322, 0.388, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.169, 0.188, 0.239, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.478, 0.529, 0.62, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="ButtonHover"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.212, 0.235, 0.298, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.639, 0.686, 0.769, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="ButtonPressed"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.125, 0.141, 0.184, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.478, 0.529, 0.62, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="Results"]
+bg_color = Color(0.125, 0.141, 0.184, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.478, 0.529, 0.62, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 16
+
+[node name="BattleScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3047d")
+script = ExtResource("1_ilck6")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=959506465]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Sky" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("SkyTexture")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 16
 
-[node name="Rows" type="VBoxContainer" parent="MarginContainer" unique_id=359994078]
+[node name="Rows" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Rows"]
 layout_mode = 2
 
-[node name="TopBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=990612246]
+[node name="TurnPill" type="PanelContainer" parent="MarginContainer/Rows/TopBar"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("Pill")
 
-[node name="TurnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=449310285]
+[node name="TurnRow" type="HBoxContainer" parent="MarginContainer/Rows/TopBar/TurnPill"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TurnCaption" type="Label" parent="MarginContainer/Rows/TopBar/TurnPill/TurnRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
+theme_override_font_sizes/font_size = 14
+text = "Turn"
+
+[node name="TurnCountLabel" type="Label" parent="MarginContainer/Rows/TopBar/TurnPill/TurnRow"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
+theme_override_font_sizes/font_size = 16
+text = "1"
 
-[node name="TopSpacer" type="Control" parent="MarginContainer/Rows/TopBar" unique_id=611165730]
+[node name="TopSpacer" type="Control" parent="MarginContainer/Rows/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SeedLabel" type="Label" parent="MarginContainer/Rows/TopBar" unique_id=1716972452]
+[node name="SeedLabel" type="Label" parent="MarginContainer/Rows/TopBar"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
+theme_override_font_sizes/font_size = 13
+text = "Seed"
 
-[node name="Arena" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=31989260]
+[node name="Arena" type="HBoxContainer" parent="MarginContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayerSide" type="VBoxContainer" parent="MarginContainer/Rows/Arena" unique_id=1056956154]
+[node name="PlayerSide" type="VBoxContainer" parent="MarginContainer/Rows/Arena"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+theme_override_constants/separation = 6
 
-[node name="PlayerGap" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=9942482]
+[node name="PlayerGap" type="Control" parent="MarginContainer/Rows/Arena/PlayerSide"]
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
-horizontal_alignment = 1
 
-[node name="PlayerArt" type="ColorRect" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=1767414447]
+[node name="PlayerArt" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide"]
+layout_mode = 2
 custom_minimum_size = Vector2(150, 150)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("PlayerArt")
+
+[node name="PlayerShadow" type="Panel" parent="MarginContainer/Rows/Arena/PlayerSide"]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 14)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("Shadow")
+
+[node name="PlayerStats" type="HBoxContainer" parent="MarginContainer/Rows/Arena/PlayerSide"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0.7012865, 0.22056806, 0, 1)
+theme_override_constants/separation = 8
 
-[node name="PlayerHealth" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=920076861]
+[node name="PlayerHealthPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Health")
+
+[node name="PlayerHealth" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats/PlayerHealthPill"]
 unique_name_in_owner = true
 layout_mode = 2
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.953, 0.839, 0.855, 1)
+theme_override_font_sizes/font_size = 15
+text = "Health: 40"
 
-[node name="PlayerBlock" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=2135843182]
+[node name="PlayerBlockPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Block")
+
+[node name="PlayerBlock" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide/PlayerStats/PlayerBlockPill"]
 unique_name_in_owner = true
 layout_mode = 2
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.839, 0.894, 0.953, 1)
+theme_override_font_sizes/font_size = 15
+text = "Block: 0"
 
-[node name="PlayerStatuses" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide" unique_id=566342633]
+[node name="PlayerStatuses" type="Label" parent="MarginContainer/Rows/Arena/PlayerSide"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.949, 0.651, 0.353, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
 horizontal_alignment = 1
 
-[node name="EnemySide" type="VBoxContainer" parent="MarginContainer/Rows/Arena" unique_id=1119204814]
+[node name="EnemySide" type="VBoxContainer" parent="MarginContainer/Rows/Arena"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+theme_override_constants/separation = 6
 
-[node name="EnemyIntent" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=711394811]
+[node name="EnemyIntentBubble" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 34)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("Intent")
+
+[node name="EnemyIntent" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyIntentBubble"]
 unique_name_in_owner = true
 layout_mode = 2
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.969, 0.765, 0.631, 1)
+theme_override_font_sizes/font_size = 16
+text = "Attack: 4"
 horizontal_alignment = 1
 
-[node name="EnemyArt" type="ColorRect" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=342084880]
+[node name="EnemyArt" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide"]
+layout_mode = 2
 custom_minimum_size = Vector2(150, 150)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("EnemyArt")
+
+[node name="EnemyShadow" type="Panel" parent="MarginContainer/Rows/Arena/EnemySide"]
+layout_mode = 2
+custom_minimum_size = Vector2(124, 14)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("Shadow")
+
+[node name="EnemyStats" type="HBoxContainer" parent="MarginContainer/Rows/Arena/EnemySide"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0.21353161, 0.4764349, 0.20110974, 1)
+theme_override_constants/separation = 8
 
-[node name="EnemyHealth" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=1655203129]
+[node name="EnemyHealthPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Health")
+
+[node name="EnemyHealth" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats/EnemyHealthPill"]
 unique_name_in_owner = true
 layout_mode = 2
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.953, 0.839, 0.855, 1)
+theme_override_font_sizes/font_size = 15
+text = "Health: 40"
 
-[node name="EnemyBlock" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=1654061449]
+[node name="EnemyBlockPill" type="PanelContainer" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Block")
+
+[node name="EnemyBlock" type="Label" parent="MarginContainer/Rows/Arena/EnemySide/EnemyStats/EnemyBlockPill"]
 unique_name_in_owner = true
 layout_mode = 2
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.839, 0.894, 0.953, 1)
+theme_override_font_sizes/font_size = 15
+text = "Block: 0"
 
-[node name="EnemyStatuses" type="Label" parent="MarginContainer/Rows/Arena/EnemySide" unique_id=2108121702]
+[node name="EnemyStatuses" type="Label" parent="MarginContainer/Rows/Arena/EnemySide"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.949, 0.651, 0.353, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
 horizontal_alignment = 1
 
-[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows" unique_id=1993988088]
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/Rows"]
 custom_minimum_size = Vector2(0, 176)
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="LeftCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1123702966]
+[node name="LeftCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 2
+theme_override_constants/separation = 10
 
-[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1847995770]
+[node name="GoopOrb" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner"]
+layout_mode = 2
+custom_minimum_size = Vector2(64, 64)
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("Goop")
+
+[node name="GoopAmountLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/GoopOrb"]
 unique_name_in_owner = true
 layout_mode = 2
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
+theme_override_font_sizes/font_size = 28
+text = "3"
+horizontal_alignment = 1
 
-[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner" unique_id=1581831115]
+[node name="DrawPile" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("Pile")
+
+[node name="DrawRow" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DrawCaption" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile/DrawRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
+theme_override_font_sizes/font_size = 14
+text = "Draw"
+
+[node name="DrawPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/LeftCorner/DrawPile/DrawRow"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
+theme_override_font_sizes/font_size = 16
+text = "5"
 
-[node name="Hand" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1199069316]
+[node name="Hand" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+theme_override_constants/separation = 8
 
-[node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1992700552]
+[node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 2
+theme_override_constants/separation = 10
 
-[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=173779285]
+[node name="EndTurnButton" type="Button" parent="MarginContainer/Rows/BottomBar/RightCorner"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "End Turn"
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+text = "End turn"
 
-[node name="DiscardPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner" unique_id=633828433]
+[node name="DiscardPile" type="PanelContainer" parent="MarginContainer/Rows/BottomBar/RightCorner"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("Pile")
+
+[node name="DiscardRow" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DiscardCaption" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile/DiscardRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
+theme_override_font_sizes/font_size = 14
+text = "Discard"
+
+[node name="DiscardPileLabel" type="Label" parent="MarginContainer/Rows/BottomBar/RightCorner/DiscardPile/DiscardRow"]
 unique_name_in_owner = true
 layout_mode = 2
-horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
+theme_override_font_sizes/font_size = 16
+text = "0"
 
-[node name="ResultsOverlay" type="CenterContainer" parent="." unique_id=923409329]
+[node name="ResultsOverlay" type="CenterContainer" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -154,25 +499,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResultsPanel" type="PanelContainer" parent="ResultsOverlay" unique_id=665469838]
+[node name="ResultsPanel" type="PanelContainer" parent="ResultsOverlay"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("Results")
 
-[node name="ResultsMargin" type="MarginContainer" parent="ResultsOverlay/ResultsPanel" unique_id=259994009]
+[node name="ResultsMargin" type="MarginContainer" parent="ResultsOverlay/ResultsPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 28
 
-[node name="ResultsRows" type="VBoxContainer" parent="ResultsOverlay/ResultsPanel/ResultsMargin" unique_id=1354484178]
+[node name="ResultsRows" type="VBoxContainer" parent="ResultsOverlay/ResultsPanel/ResultsMargin"]
 layout_mode = 2
+theme_override_constants/separation = 18
 
-[node name="ResultsLabel" type="Label" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=49029361]
+[node name="ResultsLabel" type="Label" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.894, 0.906, 0.933, 1)
+theme_override_font_sizes/font_size = 28
+text = "You win"
+horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows" unique_id=531053452]
+[node name="BackButton" type="Button" parent="ResultsOverlay/ResultsPanel/ResultsMargin/ResultsRows"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+text = "Back to menu"
