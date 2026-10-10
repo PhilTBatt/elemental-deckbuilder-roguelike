@@ -7,6 +7,8 @@ public partial class BattleScreen : Control
 {
 	public Game game;
 
+	private PackedScene cardScene = GD.Load<PackedScene>("res://card_view.tscn");
+
 	public override void _Ready()
 	{
 		game = GetNode<Session>("/root/Session").Game;
@@ -32,7 +34,8 @@ public partial class BattleScreen : Control
 		UpdateLabels();
 	}
 
-	public void UpdateLabels() {
+	public void UpdateLabels()
+	{
 		var turnCount = game.Playthrough.Battle.TurnCount;
 		var turnCountLabel = GetNode<Label>("%TurnCountLabel");
 		turnCountLabel.Text = turnCount.ToString();
@@ -76,12 +79,30 @@ public partial class BattleScreen : Control
 		var drawPileLabel = GetNode<Label>("%DrawPileLabel");
 		drawPileLabel.Text = drawPile.Count.ToString();
 
-		var playerHand = game.Playthrough.Battle.PlayerHand;
-		var playerHandLabel = GetNode<Label>("%HandLabel");
-		playerHandLabel.Text = string.Join(", ", playerHand.Select(card => $"{card.Name}: {card.Cost}"));
-
 		var discardPile = game.Playthrough.Battle.DiscardPile;
 		var discardPileLabel = GetNode<Label>("%DiscardPileLabel");
 		discardPileLabel.Text = discardPile.Count.ToString();
+
+		UpdateHand();
+	}
+
+	public void UpdateHand()
+	{
+		var hand = GetNode<HBoxContainer>("%Hand");
+		foreach (var child in hand.GetChildren()) child.QueueFree();
+
+		foreach (var card in game.Playthrough.Battle.PlayerHand)
+		{
+			var cardView = cardScene.Instantiate<CardView>();
+			hand.AddChild(cardView);
+			cardView.Setup(card);
+			cardView.ClickArea.Pressed += () => OnCardPressed(card);
+		}
+	}
+
+	private void OnCardPressed(Card card)
+	{
+		game.Playthrough.Battle.PlayCard(card);
+		UpdateLabels();
 	}
 }

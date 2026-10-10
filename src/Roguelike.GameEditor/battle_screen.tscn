@@ -123,14 +123,10 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Hand" type="HBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1199069316]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-
-[node name="HandLabel" type="Label" parent="MarginContainer/Rows/BottomBar/Hand" unique_id=1738401978]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
 
 [node name="RightCorner" type="VBoxContainer" parent="MarginContainer/Rows/BottomBar" unique_id=1992700552]
 custom_minimum_size = Vector2(150, 0)

@@ -9,6 +9,8 @@ public class Card {
 
     public List<Effect> Effects { get; private set; } = [];
 
+    public string Description => string.Join("\n", Effects.Select(effect => effect.Description));
+
     public Card(int id) {
         Id = id;
         switch (id) {

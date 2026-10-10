@@ -102,6 +102,7 @@ public class Battle {
     }
 
     public void PlayerDraw() {
+        if (PlayerHand.Count >= 10) return;
         if (DrawPile.Count <= 0) {
             DrawPile.AddRange(DiscardPile);
             DiscardPile.Clear();
@@ -127,6 +128,7 @@ public class Battle {
 
         foreach (var effect in card.Effects) effect.Apply(this, Player, Enemy);
         DiscardPile.Add(card);
+        ResolveResult();
         return true;
     }
 }

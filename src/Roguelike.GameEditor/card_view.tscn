@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dp54hf8s6frbs"]
+
+[ext_resource type="Script" uid="uid://cktx0cvq8mhnl" path="res://CardView.cs" id="1_g0ieh"]
+
+[sub_resource type="StyleBoxFlat" id="CardStyle"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.17, 0.19, 0.24, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.53, 0.62, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="OrbStyle"]
+bg_color = Color(0.36, 0.66, 0.33, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.4, 0.18, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="TextBoxStyle"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.24, 0.27, 0.33, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="CardView" type="PanelContainer" unique_id=1500168588]
+custom_minimum_size = Vector2(130, 0)
+theme_override_styles/panel = SubResource("CardStyle")
+script = ExtResource("1_g0ieh")
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=742187616]
+layout_mode = 2
+
+[node name="TopRow" type="HBoxContainer" parent="Layout" unique_id=249835271]
+layout_mode = 2
+
+[node name="CostOrb" type="PanelContainer" parent="Layout/TopRow" unique_id=865404326]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+theme_override_styles/panel = SubResource("OrbStyle")
+
+[node name="CostLabel" type="Label" parent="Layout/TopRow/CostOrb" unique_id=1985332178]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="Layout/TopRow" unique_id=2060775327]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Card name"
+text_overrun_behavior = 3
+
+[node name="Art" type="ColorRect" parent="Layout" unique_id=2020841703]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.29, 0.42, 0.47, 1)
+
+[node name="TypeLabel" type="Label" parent="Layout" unique_id=672853456]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.78, 0.84, 1)
+theme_override_font_sizes/font_size = 11
+text = "Attack"
+horizontal_alignment = 1
+
+[node name="TextBox" type="PanelContainer" parent="Layout" unique_id=943806687]
+layout_mode = 2
+theme_override_styles/panel = SubResource("TextBoxStyle")
+
+[node name="DescriptionLabel" type="Label" parent="Layout/TextBox" unique_id=672841129]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(106, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Deal 3 damage"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ClickArea" type="Button" parent="." unique_id=1685576384]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+flat = true
