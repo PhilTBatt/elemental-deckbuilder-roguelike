@@ -15,6 +15,19 @@ public class Card {
 
     public CardType CardType => Effects.Any(effect => effect.Kind == EffectType.Attack) ? CardType.Attack : CardType.Skill;
 
+    public static readonly int[] RewardPool = [2, 3, 4, 5];
+
+    public static List<Card> PickRewards(Random random, int count) {
+        var pool = new List<int>(RewardPool);
+        var picks = new List<Card>();
+        while (picks.Count < count && pool.Count > 0) {
+            int index = random.Next(pool.Count);
+            picks.Add(new Card(pool[index]));
+            pool.RemoveAt(index);
+        }
+        return picks;
+    }
+
     public Card(int id) {
         Id = id;
         switch (id) {

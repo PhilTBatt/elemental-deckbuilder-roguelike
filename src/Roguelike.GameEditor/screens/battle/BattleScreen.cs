@@ -19,8 +19,11 @@ public partial class BattleScreen : Control
 
 		GetNode<Button>("%BackButton").Pressed += () => GetTree().ChangeSceneToFile("res://screens/menu/main_menu.tscn");
 
+		var cardReward = GetNode<Control>("%CardRewardScreen");
+		cardReward.GetNode<Button>("%SkipButton").Pressed += () => cardReward.Visible = false;
+		
 		var rewards = GetNode<Control>("%RewardsPanel");
-		rewards.GetNode<Button>("%CardRewardButton").Visible = false;
+		rewards.GetNode<Button>("%CardRewardButton").Pressed += OnCardRewardPressed;
 		rewards.GetNode<Button>("%GoldRewardButton").Pressed += OnGoldRewardPressed;
 		rewards.GetNode<Button>("%ContinueButton").Pressed += OnContinuePressed;
 
@@ -45,7 +48,6 @@ public partial class BattleScreen : Control
 		GetNode<Label>("%PlayerHealth").Text = "Health: " + game.Playthrough.Player.Health.ToString();
 		GetNode<Label>("%PlayerBlock").Text = "Block: " + game.Playthrough.Player.Block.ToString();
 		GetNode<Label>("%PlayerStatuses").Text = string.Join(", ", game.Playthrough.Player.Statuses.Select(status => $"{status.Kind}: {status.Stacks}"));
-
 
 		GetNode<Label>("%EnemyHealth").Text = "Health: " + game.Playthrough.Battle.Enemy.Health.ToString();
 		GetNode<Label>("%EnemyBlock").Text = "Block: " + game.Playthrough.Battle.Enemy.Block.ToString();
@@ -96,7 +98,7 @@ public partial class BattleScreen : Control
 		if (battle.State == BattleState.PlayerWins)
 		{
 			var rewards = GetNode<Control>("%RewardsPanel");
-			rewards.GetNode<Button>("%GoldRewardButton").Text = $"{battle.GoldReward} Gold";
+			rewards.GetNode<Button>("%GoldRewardButton").Text = $"{game.Playthrough.GoldReward} Gold";
 			rewards.Visible = true;
 		}
 		else if (battle.State == BattleState.EnemyWins)
@@ -107,8 +109,33 @@ public partial class BattleScreen : Control
 	}
 	private void OnGoldRewardPressed()
 	{
-		game.Playthrough.Battle.TakeGoldReward();
+		game.Playthrough.TakeGoldReward();
 		GetNode<Control>("%RewardsPanel").GetNode<Button>("%GoldRewardButton").Visible = false;
+		UpdateLabels();
+	}
+
+	private void OnCardRewardPressed()
+	{
+		var screen = GetNode<Control>("%CardRewardScreen");
+		var row = screen.GetNode<HBoxContainer>("%RewardCards");
+		foreach (var child in row.GetChildren()) child.QueueFree();
+
+		foreach (var card in game.Playthrough.CardChoices)
+		{
+			var cardView = cardScene.Instantiate<CardView>();
+			cardView.CustomMinimumSize = new Vector2(172, 240);
+			row.AddChild(cardView);
+			cardView.Setup(card);
+			cardView.ClickArea.Pressed += () => OnRewardCardPicked(card);
+		}
+		screen.Visible = true;
+	}
+
+	private void OnRewardCardPicked(Card card)
+	{
+		game.Playthrough.TakeCardReward(card);
+		GetNode<Control>("%CardRewardScreen").Visible = false;
+		GetNode<Control>("%RewardsPanel").GetNode<Button>("%CardRewardButton").Visible = false;
 		UpdateLabels();
 	}
 

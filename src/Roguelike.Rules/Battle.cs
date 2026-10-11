@@ -29,7 +29,7 @@ public class Battle {
 
     public EffectQueue EffectQueue { get; } = new EffectQueue();
 
-    public int GoldReward { get; private set; } = 0;
+    public event Action<BattleState>? Ended;
 
     public Battle(Random random, Player player, Enemy enemy) {
         Random = random;
@@ -89,11 +89,7 @@ public class Battle {
     }
 
     public void EndBattle() {
-        if (State == BattleState.PlayerWins) {
-            GoldReward = 25;
-        } else if (State == BattleState.EnemyWins) {
-            
-        }
+        Ended?.Invoke(State);
     }
 
     public void PlayerDraw() {
@@ -129,10 +125,5 @@ public class Battle {
             next.Effect.Apply(this, next.Caster, next.Target);
             ResolveResult();
         }
-    }
-
-    public void TakeGoldReward() {
-        Player.GainGold(GoldReward);
-        GoldReward = 0;
     }
 }
