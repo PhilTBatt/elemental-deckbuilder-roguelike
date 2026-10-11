@@ -10,11 +10,11 @@ public partial class MainMenu : Control
 	{
 		game = GetNode<Session>("/root/Session").Game;
 
-		var newRunButton = GetNode<Button>("CenterContainer/MarginContainer/VBoxContainer/NewRunButton");
-		newRunButton.Pressed += OnNewRunButtonPressed;
+		GetNode<Button>("%NewRunButton").Pressed += OnNewRunButtonPressed;
 
-		var quitButton = GetNode<Button>("CenterContainer/MarginContainer/VBoxContainer/QuitButton");
-		quitButton.Pressed += OnQuitButtonPressed;
+		GetNode<Button>("%QuitButton").Pressed += OnQuitButtonPressed;
+
+		GetNode<Button>("%SettingsButton").Pressed += () => GetNode<SettingsPanel>("%SettingsPanel").Open();
 	}
 
 	public override void _Process(double delta)
