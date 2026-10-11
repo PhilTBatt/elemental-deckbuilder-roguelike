@@ -24,7 +24,7 @@ public partial class MainMenu : Control
 	private void OnNewRunButtonPressed()
 	{
 		game.ChooseMenuOption(MenuOption.NewRun);
-		GetTree().ChangeSceneToFile("res://screens/battle/battle_screen.tscn");
+		Screens.GoTo(this, Screen.Battle);
 	}
 
 	private void OnQuitButtonPressed()

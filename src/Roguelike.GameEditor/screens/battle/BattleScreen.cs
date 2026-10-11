@@ -17,7 +17,7 @@ public partial class BattleScreen : Control
 
 		GetNode<Label>("%SeedLabel").Text = game.Playthrough.Seed.ToString();
 
-		GetNode<Button>("%BackButton").Pressed += () => GetTree().ChangeSceneToFile("res://screens/menu/main_menu.tscn");
+		GetNode<Button>("%BackButton").Pressed += () => Screens.GoTo(this, Screen.Menu);
 
 		var cardReward = GetNode<Control>("%CardRewardScreen");
 		cardReward.GetNode<Button>("%SkipButton").Pressed += () => cardReward.Visible = false;
