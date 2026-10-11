@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://bqebb3xho1vjc"]
+[gd_scene format=3 uid="uid://covqka7mtxsrm"]
 
 [ext_resource type="Theme" uid="uid://c5ui5jyrmciu2" path="res://ui/hadeon_theme.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://dp54hf8s6frbs" path="res://ui/card_view.tscn" id="2"]
 
-[node name="CardRewardScreen" type="Control" unique_id=149407588]
+[node name="CardRewardScreen" type="Control" unique_id=1371401157]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1")
 
-[node name="Dim" type="ColorRect" parent="." unique_id=304887121]
+[node name="Dim" type="ColorRect" parent="." unique_id=1296324849]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.88)
 
-[node name="Center" type="CenterContainer" parent="." unique_id=2075111888]
+[node name="Center" type="CenterContainer" parent="." unique_id=531614980]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,51 +29,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Rows" type="VBoxContainer" parent="Center" unique_id=1927545858]
+[node name="Rows" type="VBoxContainer" parent="Center" unique_id=325291206]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="Center/Rows" unique_id=1141846160]
+[node name="Title" type="Label" parent="Center/Rows" unique_id=1849644632]
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 32
 text = "Choose a card"
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="Center/Rows" unique_id=1477629328]
+[node name="Subtitle" type="Label" parent="Center/Rows" unique_id=706358610]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.604, 0.639, 0.71, 1)
 theme_override_font_sizes/font_size = 15
 text = "Add one to your deck"
 horizontal_alignment = 1
 
-[node name="Gap" type="Control" parent="Center/Rows" unique_id=76912014]
+[node name="Gap" type="Control" parent="Center/Rows" unique_id=78721307]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
-[node name="RewardCards" type="HBoxContainer" parent="Center/Rows" unique_id=399741010]
+[node name="RewardCards" type="HBoxContainer" parent="Center/Rows" unique_id=65771938]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 28
 alignment = 1
 
-[node name="Card1" parent="Center/Rows/RewardCards" unique_id=180679906 instance=ExtResource("2")]
+[node name="Card1" parent="Center/Rows/RewardCards" unique_id=1866394370 instance=ExtResource("2")]
 custom_minimum_size = Vector2(172, 240)
 layout_mode = 2
 
-[node name="Card2" parent="Center/Rows/RewardCards" unique_id=429604355 instance=ExtResource("2")]
+[node name="Card2" parent="Center/Rows/RewardCards" unique_id=1273924477 instance=ExtResource("2")]
 custom_minimum_size = Vector2(172, 240)
 layout_mode = 2
 
-[node name="Card3" parent="Center/Rows/RewardCards" unique_id=2131831216 instance=ExtResource("2")]
+[node name="Card3" parent="Center/Rows/RewardCards" unique_id=279290916 instance=ExtResource("2")]
 custom_minimum_size = Vector2(172, 240)
 layout_mode = 2
 
-[node name="Gap2" type="Control" parent="Center/Rows" unique_id=443677512]
+[node name="Gap2" type="Control" parent="Center/Rows" unique_id=178603685]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="SkipButton" type="Button" parent="Center/Rows" unique_id=168425018]
+[node name="SkipButton" type="Button" parent="Center/Rows" unique_id=594968813]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 46)
 layout_mode = 2

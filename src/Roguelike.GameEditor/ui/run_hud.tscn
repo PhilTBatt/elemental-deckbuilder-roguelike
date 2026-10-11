@@ -1,11 +1,17 @@
-[gd_scene format=3 uid="uid://crrtnxnsp0618"]
+[gd_scene format=3 uid="uid://bqre68175krfw"]
 
 [ext_resource type="Theme" uid="uid://c5ui5jyrmciu2" path="res://ui/hadeon_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://boet6aaiy6g8v" path="res://ui/RunHud.cs" id="2"]
 [ext_resource type="Script" uid="uid://bqei3pbh4migm" path="res://ui/TipButton.cs" id="3"]
-[ext_resource type="PackedScene" uid="uid://dg8u17v8pkmnf" path="res://ui/settings_panel.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://tuikelsoxg2t" path="res://art/icons/health.svg" id="4"]
+[ext_resource type="Texture2D" uid="uid://cse8kxbfoa721" path="res://art/icons/gold.svg" id="5"]
+[ext_resource type="Texture2D" uid="uid://d1co3mscgw6n0" path="res://art/icons/planet.svg" id="6"]
+[ext_resource type="Texture2D" uid="uid://t2fh12cavjng" path="res://art/icons/map.svg" id="7"]
+[ext_resource type="Texture2D" uid="uid://c1y2noi150r3t" path="res://art/icons/deck.svg" id="8"]
+[ext_resource type="Texture2D" uid="uid://36ogopqowx8m" path="res://art/icons/settings.svg" id="9"]
+[ext_resource type="PackedScene" path="res://ui/settings_panel.tscn" id="10"]
 
-[node name="RunHud" type="PanelContainer" unique_id=958045483]
+[node name="RunHud" type="PanelContainer" unique_id=1838466637]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 44.0
@@ -14,11 +20,11 @@ theme = ExtResource("1")
 theme_type_variation = &"HudBar"
 script = ExtResource("2")
 
-[node name="Row" type="HBoxContainer" parent="." unique_id=1662587329]
+[node name="Row" type="HBoxContainer" parent="." unique_id=67054393]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="HealthButton" type="Button" parent="Row" unique_id=1401713051]
+[node name="HealthButton" type="Button" parent="Row" unique_id=2123013723]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Health: How much damage you can take. At 0, the run is over."
@@ -30,9 +36,10 @@ theme_override_colors/icon_hover_color = Color(0.89, 0.424, 0.482, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.89, 0.424, 0.482, 1)
 theme_override_font_sizes/font_size = 16
 text = "40/40"
+icon = ExtResource("4")
 script = ExtResource("3")
 
-[node name="GoldButton" type="Button" parent="Row" unique_id=154998309]
+[node name="GoldButton" type="Button" parent="Row" unique_id=1546982022]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Gold: Spend it at shops."
@@ -44,29 +51,30 @@ theme_override_colors/icon_hover_color = Color(0.878, 0.706, 0.333, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.878, 0.706, 0.333, 1)
 theme_override_font_sizes/font_size = 16
 text = "0"
+icon = ExtResource("5")
 script = ExtResource("3")
 
-[node name="RelicBar" type="HBoxContainer" parent="Row" unique_id=1894728132]
+[node name="RelicBar" type="HBoxContainer" parent="Row" unique_id=922178026]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="LeftSpacer" type="Control" parent="Row" unique_id=688149940]
+[node name="LeftSpacer" type="Control" parent="Row" unique_id=1004744655]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FloorLabel" type="Label" parent="Row" unique_id=1419301149]
+[node name="FloorLabel" type="Label" parent="Row" unique_id=609502530]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.749, 0.78, 0.839, 1)
 theme_override_font_sizes/font_size = 15
 text = "Floor 1  ·  Node 1"
 
-[node name="RightSpacer" type="Control" parent="Row" unique_id=50257424]
+[node name="RightSpacer" type="Control" parent="Row" unique_id=1191984067]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlanetButton" type="Button" parent="Row" unique_id=1762743436]
+[node name="PlanetButton" type="Button" parent="Row" unique_id=722867269]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Planet: The world you're shaping. Placeholder readings:
@@ -81,9 +89,10 @@ theme_override_colors/icon_pressed_color = Color(0.624, 0.776, 0.847, 1)
 theme_override_colors/icon_hover_color = Color(0.624, 0.776, 0.847, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.624, 0.776, 0.847, 1)
 theme_override_font_sizes/font_size = 16
+icon = ExtResource("6")
 script = ExtResource("3")
 
-[node name="MapButton" type="Button" parent="Row" unique_id=1594810979]
+[node name="MapButton" type="Button" parent="Row" unique_id=669572525]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Map: See the path ahead."
@@ -94,9 +103,10 @@ theme_override_colors/icon_pressed_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_colors/icon_hover_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_font_sizes/font_size = 16
+icon = ExtResource("7")
 script = ExtResource("3")
 
-[node name="DeckButton" type="Button" parent="Row" unique_id=1930199364]
+[node name="DeckButton" type="Button" parent="Row" unique_id=68278109]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Deck: All the cards you own."
@@ -108,9 +118,10 @@ theme_override_colors/icon_hover_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_font_sizes/font_size = 16
 text = "10"
+icon = ExtResource("8")
 script = ExtResource("3")
 
-[node name="SettingsButton" type="Button" parent="Row" unique_id=2043043989]
+[node name="SettingsButton" type="Button" parent="Row" unique_id=1582596421]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Settings"
@@ -121,11 +132,12 @@ theme_override_colors/icon_pressed_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_colors/icon_hover_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.788, 0.808, 0.847, 1)
 theme_override_font_sizes/font_size = 16
+icon = ExtResource("9")
 script = ExtResource("3")
 
-[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1760667837]
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=134113049]
 layer = 10
 
-[node name="SettingsPanel" parent="SettingsLayer" unique_id=1044756405 instance=ExtResource("10")]
+[node name="SettingsPanel" parent="SettingsLayer" unique_id=1077954468 instance=ExtResource("10")]
 unique_name_in_owner = true
 visible = false

@@ -30,6 +30,7 @@ public partial class BattleScreen : Control
 	{
 		game.Playthrough.Battle.EndTurn();
 		UpdateLabels();
+		ShowRewards();
 	}
 
 	public void UpdateLabels()
