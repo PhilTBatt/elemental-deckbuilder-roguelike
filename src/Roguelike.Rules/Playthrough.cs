@@ -23,11 +23,5 @@ public class Playthrough(int seed) {
         var enemy = new Slime();
         Battle = new Battle(Random, Player, enemy);
         Battle.StartOfBattle();
-
-        ShowRewards();
-    }
-
-    public void ShowRewards() {
-        
     }
 }

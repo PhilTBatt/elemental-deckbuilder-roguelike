@@ -19,6 +19,11 @@ public partial class BattleScreen : Control
 
 		GetNode<Button>("%BackButton").Pressed += () => GetTree().ChangeSceneToFile("res://screens/menu/main_menu.tscn");
 
+		var rewards = GetNode<Control>("%RewardsPanel");
+		rewards.GetNode<Button>("%CardRewardButton").Visible = false;
+		rewards.GetNode<Button>("%GoldRewardButton").Pressed += OnGoldRewardPressed;
+		rewards.GetNode<Button>("%ContinueButton").Pressed += OnContinuePressed;
+
 		UpdateLabels();
 	}
 
@@ -37,28 +42,25 @@ public partial class BattleScreen : Control
 	{
 		GetNode<Label>("%TurnCountLabel").Text = game.Playthrough.Battle.TurnCount.ToString();
 
-
 		GetNode<Label>("%PlayerHealth").Text = "Health: " + game.Playthrough.Player.Health.ToString();
-
 		GetNode<Label>("%PlayerBlock").Text = "Block: " + game.Playthrough.Player.Block.ToString();
-
 		GetNode<Label>("%PlayerStatuses").Text = string.Join(", ", game.Playthrough.Player.Statuses.Select(status => $"{status.Kind}: {status.Stacks}"));
 
 
 		GetNode<Label>("%EnemyHealth").Text = "Health: " + game.Playthrough.Battle.Enemy.Health.ToString();
-
 		GetNode<Label>("%EnemyBlock").Text = "Block: " + game.Playthrough.Battle.Enemy.Block.ToString();
-
 		GetNode<Label>("%EnemyStatuses").Text = string.Join(", ", game.Playthrough.Battle.Enemy.Statuses.Select(status => $"{status.Kind}: {status.Stacks}"));
-
 		GetNode<Label>("%EnemyIntent").Text = $"{game.Playthrough.Battle.Enemy.Intent.Kind}: {game.Playthrough.Battle.Enemy.Intent.Amount}";
 
-
 		GetNode<Label>("%GoopAmountLabel").Text = game.Playthrough.Battle.PlayerEnergy.ToString();
-
 		GetNode<Label>("%DrawPileLabel").Text = game.Playthrough.Battle.DrawPile.Count.ToString();
-
 		GetNode<Label>("%DiscardPileLabel").Text = game.Playthrough.Battle.DiscardPile.Count.ToString();
+
+		var hud = GetNode<RunHud>("%RunHud");
+		hud.SetHealth(game.Playthrough.Player.Health);
+		hud.SetGold(game.Playthrough.Player.Gold);
+		hud.SetDeckCount(game.Playthrough.Player.Deck.Count);
+		hud.SetFloor(1, game.Playthrough.EncounterCount);
 
 		UpdateHand();
 	}
@@ -78,11 +80,6 @@ public partial class BattleScreen : Control
 			var canAfford = card.Cost <= game.Playthrough.Battle.PlayerEnergy;
 			cardView.ClickArea.Disabled = !canAfford;
 			cardView.Modulate = canAfford ? Colors.White : new Color(1, 1, 1, 0.4f);
-
-			var hud = GetNode<RunHud>("%RunHud");
-			hud.SetHealth(game.Playthrough.Player.Health);
-			hud.SetDeckCount(game.Playthrough.Player.Deck.Count);
-			hud.SetFloor(1, game.Playthrough.EncounterCount);
 		}
 	}
 
@@ -96,7 +93,28 @@ public partial class BattleScreen : Control
 	private void ShowRewards()
 	{
 		var battle = game.Playthrough.Battle;
-		GetNode<Control>("%ResultsOverlay").Visible = battle.IsOver;
-		GetNode<Label>("%ResultsLabel").Text = battle.State == BattleState.PlayerWins ? "You win" : "You lose";
+		if (battle.State == BattleState.PlayerWins)
+		{
+			var rewards = GetNode<Control>("%RewardsPanel");
+			rewards.GetNode<Button>("%GoldRewardButton").Text = $"{battle.GoldReward} Gold";
+			rewards.Visible = true;
+		}
+		else if (battle.State == BattleState.EnemyWins)
+		{
+			GetNode<Label>("%ResultsLabel").Text = "You lose";
+			GetNode<Control>("%ResultsOverlay").Visible = true;
+		}
+	}
+	private void OnGoldRewardPressed()
+	{
+		game.Playthrough.Battle.TakeGoldReward();
+		GetNode<Control>("%RewardsPanel").GetNode<Button>("%GoldRewardButton").Visible = false;
+		UpdateLabels();
+	}
+
+	private void OnContinuePressed()
+	{
+		game.Playthrough.StartNextEncounter();
+		GetTree().ReloadCurrentScene();
 	}
 }
