@@ -1,6 +1,6 @@
 namespace Roguelike.Rules;
 
-public enum EffectType { Attack, Block }
+public enum EffectType { Attack, Block, Burn }
 
 public class Effect {
     public EffectType Kind { get; }
@@ -21,6 +21,10 @@ public class Effect {
             case EffectType.Block:
                 Description = $"Gain {Amount} block";
                 break;
+
+              case EffectType.Burn:
+                Description = $"Apply {Amount} Burn";
+                break;
                 
             default:
                 throw new ArgumentException("No effect has type " + kind);
@@ -35,6 +39,10 @@ public class Effect {
 
             case EffectType.Block:
                 caster.AddBlock(Amount);
+                break;
+
+              case EffectType.Burn:
+                target.AddStatus(StatusType.Burn, Amount);
                 break;
         }
     }

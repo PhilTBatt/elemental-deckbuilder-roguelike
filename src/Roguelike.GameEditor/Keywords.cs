@@ -10,7 +10,7 @@ public static class Keywords
 	{
 		["Goop"] = "Spend it to play cards. Refills to 3 at the start of your turn.",
 		["Block"] = "Stops damage. Wears off at the start of your next turn.",
-		["Burn"] = "At the end of its turn, takes 1 damage per stack, then loses 1 stack.",
+		["Burn"] = "At the start of its turn, takes 1 damage per stack, then loses 1 stack.",
 		["Shock"] = "When hit, every enemy takes 1 damage per stack, then loses 1 stack.",
 		["Frost"] = "Its next attack is weakened.",
 		["Brittle"] = "Takes more damage from attacks.",
@@ -50,6 +50,7 @@ public static class Keywords
 		foreach (var effect in card.Effects)
 		{
 			if (effect.Kind == EffectType.Block) names.Add("Block");
+			if (effect.Kind == EffectType.Burn) names.Add("Burn");
 		}
 		return For(names);
 	}

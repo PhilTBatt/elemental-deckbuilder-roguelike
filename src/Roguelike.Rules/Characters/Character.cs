@@ -28,12 +28,21 @@ public class Character {
         Block += block;
     }
 
+    public void AddStatus(StatusType kind, int stacks) {
+        var existing = Statuses.Find(status => status.Kind == kind);
+        if (existing != null) {
+            existing.Stacks += stacks;
+        } else {
+            Statuses.Add(new Status(kind, stacks));
+        }
+    }
+
     public void EndOfTurn() {
-        foreach (var status in Statuses) status.EndTurn(this);
-        Statuses.RemoveAll(status => status.Stacks <= 0);
     }
 
     public void StartOfTurn() {
         Block = 0;
+        foreach (var status in Statuses) status.Tick(this);
+        Statuses.RemoveAll(status => status.Stacks <= 0);
     }
 }

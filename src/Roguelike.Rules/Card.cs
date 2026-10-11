@@ -29,6 +29,30 @@ public class Card {
                 Cost = 1;
                 Effects = [new Effect(EffectType.Block, 3)];
                 break;
+
+            case 2:
+                Name = "Ignite";
+                Cost = 1;
+                Effects = [new Effect(EffectType.Burn, 2)];
+                break;
+
+            case 3:
+                Name = "Kindle";
+                Cost = 0;
+                Effects = [new Effect(EffectType.Burn, 1)];
+                break;
+
+            case 4:
+                Name = "Ember";
+                Cost = 1;
+                Effects = [new Effect(EffectType.Attack, 2), new Effect(EffectType.Burn, 1)];
+                break;
+
+            case 5:
+                Name = "Fireball";
+                Cost = 2;
+                Effects = [new Effect(EffectType.Attack, 6), new Effect(EffectType.Burn, 1)];
+                break;
                 
             default:
                 throw new ArgumentException("No card has id " + id);
