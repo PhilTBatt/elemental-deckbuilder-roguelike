@@ -11,5 +11,7 @@ public partial class CardView : PanelContainer
 		GetNode<Label>("%NameLabel").Text = card.Name;
 		GetNode<Label>("%TypeLabel").Text = card.CardType.ToString();
 		GetNode<Label>("%DescriptionLabel").Text = card.Description;
+
+		ClickArea.TooltipText = Keywords.ForCard(card);
 	}
 }
