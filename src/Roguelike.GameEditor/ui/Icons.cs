@@ -9,7 +9,7 @@ public enum IconKind
 public static class Icons
 {
 	public static Texture2D Texture(IconKind kind) =>
-		GD.Load<Texture2D>($"res://icons/{kind.ToString().ToLowerInvariant()}.svg");
+		GD.Load<Texture2D>($"res://art/icons/{kind.ToString().ToLowerInvariant()}.svg");
 
 	public static Color Tint(IconKind kind) => kind switch
 	{

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dp54hf8s6frbs"]
 
-[ext_resource type="Script" uid="uid://cktx0cvq8mhnl" path="res://CardView.cs" id="1_g0ieh"]
-[ext_resource type="Theme" path="res://hadeon_theme.tres" id="2_theme"]
-[ext_resource type="Script" path="res://TipButton.cs" id="3_tip"]
+[ext_resource type="Script" uid="uid://bbcudmne7uuq" path="res://ui/CardView.cs" id="1_g0ieh"]
+[ext_resource type="Theme" uid="uid://c5ui5jyrmciu2" path="res://ui/hadeon_theme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://bqei3pbh4migm" path="res://ui/TipButton.cs" id="3_tip"]
 
 [sub_resource type="StyleBoxFlat" id="CardStyle"]
 content_margin_left = 8.0

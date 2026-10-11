@@ -7,7 +7,7 @@ public partial class BattleScreen : Control
 {
 	public Game game;
 
-	private PackedScene cardScene = GD.Load<PackedScene>("res://card_view.tscn");
+	private PackedScene cardScene = GD.Load<PackedScene>("res://ui/card_view.tscn");
 
 	public override void _Ready()
 	{
@@ -17,7 +17,7 @@ public partial class BattleScreen : Control
 
 		GetNode<Label>("%SeedLabel").Text = game.Playthrough.Seed.ToString();
 
-		GetNode<Button>("%BackButton").Pressed += () => GetTree().ChangeSceneToFile("res://main_menu.tscn");
+		GetNode<Button>("%BackButton").Pressed += () => GetTree().ChangeSceneToFile("res://screens/menu/main_menu.tscn");
 
 		UpdateLabels();
 	}
@@ -75,8 +75,13 @@ public partial class BattleScreen : Control
 			cardView.ClickArea.Pressed += () => OnCardPressed(card);
 
 			var canAfford = card.Cost <= game.Playthrough.Battle.PlayerEnergy;
-			cardView.ClickArea.Visible = canAfford;
+			cardView.ClickArea.Disabled = !canAfford;
 			cardView.Modulate = canAfford ? Colors.White : new Color(1, 1, 1, 0.4f);
+
+			var hud = GetNode<RunHud>("%RunHud");
+			hud.SetHealth(game.Playthrough.Player.Health);
+			hud.SetDeckCount(game.Playthrough.Player.Deck.Count);
+			hud.SetFloor(1, game.Playthrough.EncounterCount);
 		}
 	}
 

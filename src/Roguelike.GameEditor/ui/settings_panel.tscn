@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://dg8u17v8pkmnf"]
+
+[ext_resource type="Theme" uid="uid://c5ui5jyrmciu2" path="res://ui/hadeon_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://bklg0x5vr5k0" path="res://ui/SettingsPanel.cs" id="2"]
+
+[node name="SettingsPanel" type="Control" unique_id=1800037955]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("2")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1865281392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1209203325]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="PanelContainer" parent="Center" unique_id=1052210770]
+custom_minimum_size = Vector2(600, 440)
+layout_mode = 2
+theme_type_variation = &"PopupFrame"
+
+[node name="Rows" type="VBoxContainer" parent="Center/Frame" unique_id=310352890]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Center/Frame/Rows" unique_id=58963601]
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+text = "Settings"
+
+[node name="Tabs" type="TabContainer" parent="Center/Frame/Rows" unique_id=469861047]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Game" type="VBoxContainer" parent="Center/Frame/Rows/Tabs" unique_id=1230670842]
+layout_mode = 2
+theme_override_constants/separation = 14
+metadata/_tab_index = 0
+
+[node name="SpeedRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Game" unique_id=169809499]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Game/SpeedRow" unique_id=924749865]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Animation speed"
+
+[node name="AnimationSpeed" type="OptionButton" parent="Center/Frame/Rows/Tabs/Game/SpeedRow" unique_id=968367744]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "Fast"
+popup/item_1/id = 1
+popup/item_2/text = "Instant"
+popup/item_2/id = 2
+
+[node name="ShakeRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Game" unique_id=1052847715]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Game/ShakeRow" unique_id=1319639741]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Screen shake"
+
+[node name="ScreenShake" type="CheckButton" parent="Center/Frame/Rows/Tabs/Game/ShakeRow" unique_id=533312113]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+button_pressed = true
+
+[node name="TooltipRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Game" unique_id=773051478]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Game/TooltipRow" unique_id=1329222438]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Keyword tooltips"
+
+[node name="ShowTooltips" type="CheckButton" parent="Center/Frame/Rows/Tabs/Game/TooltipRow" unique_id=1217760485]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+button_pressed = true
+
+[node name="ConfirmRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Game" unique_id=320537658]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Game/ConfirmRow" unique_id=995734465]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirm End Turn"
+
+[node name="ConfirmEndTurn" type="CheckButton" parent="Center/Frame/Rows/Tabs/Game/ConfirmRow" unique_id=2039067760]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Audio" type="VBoxContainer" parent="Center/Frame/Rows/Tabs" unique_id=1330187360]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 14
+metadata/_tab_index = 1
+
+[node name="MasterRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Audio" unique_id=933169226]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Audio/MasterRow" unique_id=1686713047]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+
+[node name="MasterVolume" type="HSlider" parent="Center/Frame/Rows/Tabs/Audio/MasterRow" unique_id=756226063]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+value = 80.0
+
+[node name="MusicRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Audio" unique_id=1638247421]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Audio/MusicRow" unique_id=50082452]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+
+[node name="MusicVolume" type="HSlider" parent="Center/Frame/Rows/Tabs/Audio/MusicRow" unique_id=1083032866]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+value = 70.0
+
+[node name="SfxRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Audio" unique_id=482533583]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Audio/SfxRow" unique_id=1693380497]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sound effects"
+
+[node name="SfxVolume" type="HSlider" parent="Center/Frame/Rows/Tabs/Audio/SfxRow" unique_id=651164025]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+value = 80.0
+
+[node name="Display" type="VBoxContainer" parent="Center/Frame/Rows/Tabs" unique_id=223218259]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 14
+metadata/_tab_index = 2
+
+[node name="FullscreenRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Display" unique_id=223016291]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Display/FullscreenRow" unique_id=697139509]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fullscreen"
+
+[node name="Fullscreen" type="CheckButton" parent="Center/Frame/Rows/Tabs/Display/FullscreenRow" unique_id=1054791491]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="VSyncRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Display" unique_id=1538484422]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Display/VSyncRow" unique_id=31264375]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "VSync"
+
+[node name="VSync" type="CheckButton" parent="Center/Frame/Rows/Tabs/Display/VSyncRow" unique_id=1368250572]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+button_pressed = true
+
+[node name="ScaleRow" type="HBoxContainer" parent="Center/Frame/Rows/Tabs/Display" unique_id=1648378082]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Center/Frame/Rows/Tabs/Display/ScaleRow" unique_id=1071563074]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UI scale"
+
+[node name="UiScale" type="OptionButton" parent="Center/Frame/Rows/Tabs/Display/ScaleRow" unique_id=1207349926]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "100%"
+popup/item_0/id = 0
+popup/item_1/text = "125%"
+popup/item_1/id = 1
+popup/item_2/text = "150%"
+popup/item_2/id = 2
+
+[node name="Footer" type="HBoxContainer" parent="Center/Frame/Rows" unique_id=1606019326]
+layout_mode = 2
+
+[node name="Note" type="Label" parent="Center/Frame/Rows/Footer" unique_id=1827061005]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CaptionLabel"
+text = "Placeholders for now: these don't change anything yet."
+
+[node name="CloseButton" type="Button" parent="Center/Frame/Rows/Footer" unique_id=1767048269]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 42)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton"
+text = "Done"
