@@ -15,6 +15,10 @@ public class Playthrough(int seed) {
 
     public Player Player { get; private set; } = new Player();
 
+    public Map Map { get; } = Map.FirstFloor();
+
+    public Map Map { get; } = Map.FirstFloor();
+
     public Battle? Battle { get; private set; } = null;
 
     public int GoldReward { get; private set; } = 0;
